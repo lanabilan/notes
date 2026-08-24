@@ -1,8 +1,8 @@
-# 10x Astro Starter
+# ReadTheKey
 
 ![](./public/template.png)
 
-A modern, opinionated starter template for building fast, accessible web applications.
+Mobile-first web app for practicing staff-note → piano key reading. Built on Astro, React, Supabase, and Cloudflare Workers.
 
 ## Tech Stack
 
