@@ -87,6 +87,14 @@ Rebrand the project to ReadTheKey and establish a light, mobile-friendly documen
 
 **Contract**: If README is edited, H1 / one-line description say ReadTheKey. Cosmic screenshot may remain until replaced later.
 
+#### 5. Home chrome light pass (addendum — review F1)
+
+**File**: `src/components/Welcome.astro`, `src/components/Topbar.astro`
+
+**Intent**: Strip cosmic styling from the temporary home so Phase 1 criterion 1.7 (light theme visible) passes before Phase 2 replaces `/` with the practice shell.
+
+**Contract**: Welcome uses `bg-background` / theme tokens (no `bg-cosmic`, orbs, or starfield). Topbar uses light border/card chrome. Auth CTAs may remain until Phase 2 removes Topbar from `/`.
+
 ### Success Criteria:
 
 #### Automated Verification:
@@ -257,16 +265,16 @@ Static shell with no SW; keep home free of heavy cosmic backgrounds and large de
 
 #### Automated
 
-- [x] 1.1 `npm run lint` passes
-- [x] 1.2 `npm run build` passes (with or without Supabase env; match existing CI optional secrets behavior)
-- [x] 1.3 `package.json` and `wrangler.jsonc` name fields are `readthekey`
-- [x] 1.4 Layout default title string is `ReadTheKey`
+- [x] 1.1 `npm run lint` passes — 06c44a3
+- [x] 1.2 `npm run build` passes (with or without Supabase env; match existing CI optional secrets behavior) — 06c44a3
+- [x] 1.3 `package.json` and `wrangler.jsonc` name fields are `readthekey` — 06c44a3
+- [x] 1.4 Layout default title string is `ReadTheKey` — 06c44a3
 
 #### Manual
 
-- [x] 1.5 `npm run dev` home still loads (may still show Welcome until Phase 2)
-- [x] 1.6 Document viewport meta includes `initial-scale=1` when viewed in page source
-- [x] 1.7 Light theme tokens visible on a simple page (body background is light, not cosmic)
+- [x] 1.5 `npm run dev` home still loads (may still show Welcome until Phase 2) — 06c44a3
+- [x] 1.6 Document viewport meta includes `initial-scale=1` when viewed in page source — 06c44a3
+- [x] 1.7 Light theme tokens visible on a simple page (body background is light, not cosmic) — 06c44a3
 
 ### Phase 2: Practice shell placeholder
 
