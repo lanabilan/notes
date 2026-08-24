@@ -280,15 +280,15 @@ Static shell with no SW; keep home free of heavy cosmic backgrounds and large de
 
 #### Automated
 
-- [x] 2.1 `npm run lint` passes
-- [x] 2.2 `npm run build` passes
-- [x] 2.3 `/` route source no longer depends on `Welcome.astro` as its primary child
+- [x] 2.1 `npm run lint` passes — 40de1fb
+- [x] 2.2 `npm run build` passes — 40de1fb
+- [x] 2.3 `/` route source no longer depends on `Welcome.astro` as its primary child — 40de1fb
 
 #### Manual
 
-- [x] 2.4 On a phone-width viewport: three regions visible, brand readable, no horizontal scroll
-- [x] 2.5 Sign-in / cosmic hero not shown on `/`
-- [x] 2.6 Auth URLs (`/auth/signin`, etc.) still respond if hit directly (unchanged)
+- [x] 2.4 On a phone-width viewport: three regions visible, brand readable, no horizontal scroll — 40de1fb
+- [x] 2.5 Sign-in / cosmic hero not shown on `/` — 40de1fb
+- [x] 2.6 Auth URLs (`/auth/signin`, etc.) still respond if hit directly (unchanged) — 40de1fb
 
 ### Phase 3: Ship public URL
 
