@@ -3,7 +3,7 @@ project: "ReadTheKey"
 version: 1
 status: draft
 created: 2026-08-23
-updated: 2026-08-23
+updated: 2026-08-25
 prd_version: 1
 main_goal: speed
 top_blocker: time
@@ -27,7 +27,7 @@ Existing piano-note apps interrupt practice with ads or paywalls. ReadTheKey is 
 
 | ID    | Change ID                 | Outcome (user can …)                                                                 | Prerequisites | PRD refs                                      | Status   |
 | ----- | ------------------------- | ------------------------------------------------------------------------------------ | ------------- | --------------------------------------------- | -------- |
-| F-01  | mobile-web-shell          | (foundation) Deployable mobile-first web shell is in place                           | —             | FR-010, NFR mobile/offline                    | ready    |
+| F-01  | mobile-web-shell          | (foundation) Deployable mobile-first web shell is in place                           | —             | FR-010, NFR mobile/offline                    | done     |
 | S-01  | guest-practice-round      | Guest can complete a 10-note treble practice round on mobile with feedback + summary | F-01          | US-01, FR-001–005, FR-007, FR-009, FR-010      | proposed |
 | F-02  | oauth-profile-scaffold    | (foundation) OAuth sign-in + profile store scaffold is in place                      | F-01          | Access Control, FR-008                        | proposed |
 | S-02  | oauth-profile-progress    | Signed-in user can save practice progress in their OAuth profile                     | S-01, F-02    | FR-008                                        | proposed |
@@ -67,7 +67,7 @@ Foundations below assume these are present and do NOT re-scaffold them.
 - **Unknowns:**
   - PWA installability vs mobile web page — Owner: user. Block: no (product is mobile-first either way; stack/delivery choice).
 - **Risk:** Sequenced first because the repo is empty; without a shell, S-01 cannot ship. Under `speed`, keep the shell minimal — no extra tooling beyond what S-01 needs.
-- **Status:** ready
+- **Status:** done
 
 ### F-02: OAuth + profile scaffold
 
@@ -144,4 +144,4 @@ Foundations below assume these are present and do NOT re-scaffold them.
 
 ## Done
 
-(Empty on first generation. `/10x-archive` appends entries here.)
+- **F-01: (foundation) A deployable mobile-first web app shell is in place so practice UI can ship without redoing hosting/bootstrap per slice.** — Archived 2026-08-25 → `context/archive/2026-08-23-mobile-web-shell/`. Lesson: —.
