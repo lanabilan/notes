@@ -309,13 +309,13 @@ VexFlow adds bundle weight — keep staff redraw scoped to pitch changes; avoid 
 
 #### Automated
 
-- [x] 1.1 `npm run lint` passes
-- [x] 1.2 `npm run build` passes
-- [x] 1.3 Pitch set is C4–G5 naturals; `generateRound` length 10 both modes (compile/export via build; no test runner)
+- [x] 1.1 `npm run lint` passes — ae997d1
+- [x] 1.2 `npm run build` passes — ae997d1
+- [x] 1.3 Pitch set is C4–G5 naturals; `generateRound` length 10 both modes (compile/export via build; no test runner) — ae997d1
 
 #### Manual
 
-- [x] 1.4 Spot-check generator outputs: random varies; stepwise uses adjacent naturals
+- [x] 1.4 Spot-check generator outputs: random varies; stepwise uses adjacent naturals — ae997d1
 
 ### Phase 2: Staff + piano UI
 
