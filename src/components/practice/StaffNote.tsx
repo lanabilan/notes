@@ -11,6 +11,26 @@ interface StaffNoteProps {
 
 const STAFF_HEIGHT = 148;
 
+type VexFlowModule = (typeof import("vexflow"))["default"];
+
+/** Load VexFlow + notation fonts once; redraws reuse the same module. */
+let vexFlowReady: Promise<VexFlowModule> | null = null;
+
+function loadVexFlow(): Promise<VexFlowModule> {
+  vexFlowReady ??= (async () => {
+    try {
+      const VexFlow = (await import("vexflow")).default;
+      await VexFlow.loadFonts("Bravura", "Academico");
+      VexFlow.setFonts("Bravura", "Academico");
+      return VexFlow;
+    } catch (error) {
+      vexFlowReady = null;
+      throw error;
+    }
+  })();
+  return vexFlowReady;
+}
+
 /**
  * Renders one treble-clef natural (or accidental) note via VexFlow.
  * Loads VexFlow only inside the effect so SSR / Workers never evaluate it.
@@ -22,21 +42,12 @@ export default function StaffNote({ pitch, className }: StaffNoteProps) {
     const container = containerRef.current;
     if (!container) return;
 
-    const active: { current: boolean } = { current: true };
-    const isActive = () => active.current;
+    const generation: { current: number } = { current: 0 };
+    const effectId = ++generation.current;
+    const isCurrent = () => generation.current === effectId;
 
-    async function draw(width: number) {
-      if (!isActive() || width <= 0) return;
-      const mount = containerRef.current;
-      if (!mount) return;
-
-      const VexFlow = (await import("vexflow")).default;
-      if (!isActive()) return;
-
-      await VexFlow.loadFonts("Bravura", "Academico");
-      VexFlow.setFonts("Bravura", "Academico");
-      if (!isActive()) return;
-
+    function draw(width: number, VexFlow: VexFlowModule) {
+      if (!isCurrent() || width <= 0) return;
       const target = containerRef.current;
       if (!target) return;
 
@@ -58,16 +69,29 @@ export default function StaffNote({ pitch, className }: StaffNoteProps) {
       Formatter.FormatAndDraw(context, stave, [note]);
     }
 
-    const resizeObserver = new ResizeObserver((entries) => {
-      const entry = entries.at(0);
-      if (entry === undefined) return;
-      void draw(entry.contentRect.width);
-    });
-    resizeObserver.observe(container);
+    let resizeObserver: ResizeObserver | undefined;
+
+    void (async () => {
+      try {
+        const VexFlow = await loadVexFlow();
+        if (!isCurrent()) return;
+
+        resizeObserver = new ResizeObserver((entries) => {
+          const entry = entries.at(0);
+          if (entry === undefined) return;
+          draw(entry.contentRect.width, VexFlow);
+        });
+        resizeObserver.observe(container);
+        draw(container.clientWidth, VexFlow);
+      } catch {
+        // Leave staff empty; avoid unhandled rejection on font/module failure.
+        if (!isCurrent()) return;
+      }
+    })();
 
     return () => {
-      active.current = false;
-      resizeObserver.disconnect();
+      generation.current += 1;
+      resizeObserver?.disconnect();
       container.innerHTML = "";
     };
   }, [pitch]);
