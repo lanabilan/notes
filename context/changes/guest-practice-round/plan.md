@@ -334,17 +334,17 @@ VexFlow adds bundle weight — keep staff redraw scoped to pitch changes; avoid 
 
 #### Automated
 
-- [x] 3.1 `npm run lint` passes
-- [x] 3.2 `npm run build` passes
-- [x] 3.3 `/` mounts practice island (not Welcome)
+- [x] 3.1 `npm run lint` passes — 5fece19
+- [x] 3.2 `npm run build` passes — 5fece19
+- [x] 3.3 `/` mounts practice island (not Welcome) — 5fece19
 
 #### Manual
 
-- [x] 3.4 Complete 10-note round; summary shows accuracy + avg time
-- [x] 3.5 Wrong path: reveal key + letter name; Next continues
-- [x] 3.6 Correct path advances without forced reveal
-- [x] 3.7 Practice again + other set mode works
-- [x] 3.8 No login wall; refresh clears session state
+- [x] 3.4 Complete 10-note round; summary shows accuracy + avg time — 5fece19
+- [x] 3.5 Wrong path: reveal key + letter name; Next continues — 5fece19
+- [x] 3.6 Correct path advances without forced reveal — 5fece19
+- [x] 3.7 Practice again + other set mode works — 5fece19
+- [x] 3.8 No login wall; refresh clears session state — 5fece19
 
 ### Phase 4: Mobile polish & ship check
 
