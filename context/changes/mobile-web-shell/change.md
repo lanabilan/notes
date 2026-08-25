@@ -1,7 +1,7 @@
 ---
 change_id: mobile-web-shell
 title: Mobile-first deployable web shell for ReadTheKey
-status: impl_reviewed
+status: implementing
 created: 2026-08-23
 updated: 2026-08-24
 archived_at: null
