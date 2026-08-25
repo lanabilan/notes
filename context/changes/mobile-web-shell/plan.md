@@ -294,11 +294,11 @@ Static shell with no SW; keep home free of heavy cosmic backgrounds and large de
 
 #### Automated
 
-- [x] 3.1 CI job on the branch/PR or `master` is green after Phase 1–2 commits land
-- [x] 3.2 `npm run build` still passes locally before deploy
+- [x] 3.1 CI job on the branch/PR or `master` is green after Phase 1–2 commits land — 5d7120a
+- [x] 3.2 `npm run build` still passes locally before deploy — 5d7120a
 
 #### Manual
 
-- [x] 3.3 Public Cloudflare Workers URL opens the practice shell
-- [x] 3.4 Real-phone smoke: brand + three regions, no H-scroll, no login wall
-- [x] 3.5 Auth demo not required for the guest path on `/`
+- [x] 3.3 Public Cloudflare Workers URL opens the practice shell — 5d7120a
+- [x] 3.4 Real-phone smoke: brand + three regions, no H-scroll, no login wall — 5d7120a
+- [x] 3.5 Auth demo not required for the guest path on `/` — 5d7120a
