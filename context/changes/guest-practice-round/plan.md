@@ -321,14 +321,14 @@ VexFlow adds bundle weight — keep staff redraw scoped to pitch changes; avoid 
 
 #### Automated
 
-- [x] 2.1 `npm run lint` passes
-- [x] 2.2 `npm run build` passes
-- [x] 2.3 `vexflow` present in `package.json`
+- [x] 2.1 `npm run lint` passes — 1e9164c
+- [x] 2.2 `npm run build` passes — 1e9164c
+- [x] 2.3 `vexflow` present in `package.json` — 1e9164c
 
 #### Manual
 
-- [x] 2.4 ~390px: staff note + piano visible, no H-scroll; key tap fires
-- [x] 2.5 No Topbar / sign-in CTAs on `/`
+- [x] 2.4 ~390px: staff note + piano visible, no H-scroll; key tap fires — 1e9164c
+- [x] 2.5 No Topbar / sign-in CTAs on `/` — 1e9164c
 
 ### Phase 3: Round loop & summary
 
