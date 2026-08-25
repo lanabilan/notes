@@ -1,5 +1,5 @@
 ---
-
+import PracticeStage from "@/components/practice/PracticeStage";
 ---
 
 <div
@@ -11,18 +11,5 @@
     <p class="text-muted-foreground mt-1 text-sm sm:text-base">Practice coming soon</p>
   </header>
 
-  <section class="border-border mx-4 shrink-0 border-b py-3" aria-label="Score">
-    <p class="text-muted-foreground text-xs font-medium tracking-wide uppercase">Score</p>
-    <div class="mt-1 min-h-8" aria-hidden="true"></div>
-  </section>
-
-  <section class="border-border mx-4 flex min-h-0 flex-1 flex-col border-b py-3" aria-label="Staff">
-    <p class="text-muted-foreground shrink-0 text-xs font-medium tracking-wide uppercase">Staff</p>
-    <div class="mt-2 min-h-32 flex-1" aria-hidden="true"></div>
-  </section>
-
-  <section class="mx-4 flex min-h-0 flex-1 flex-col py-3 pb-4" aria-label="Piano">
-    <p class="text-muted-foreground shrink-0 text-xs font-medium tracking-wide uppercase">Piano</p>
-    <div class="mt-2 min-h-32 flex-1" aria-hidden="true"></div>
-  </section>
+  <PracticeStage client:only="react" />
 </div>
