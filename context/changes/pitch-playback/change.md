@@ -1,7 +1,7 @@
 ---
 change_id: pitch-playback
 title: Pitch playback
-status: implemented
+status: impl_reviewed
 created: 2026-08-28
 updated: 2026-08-28
 archived_at: null

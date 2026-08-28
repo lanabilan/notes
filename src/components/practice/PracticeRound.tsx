@@ -4,7 +4,7 @@ import { Volume2, VolumeX } from "lucide-react";
 import PianoKeyboard from "@/components/practice/PianoKeyboard";
 import StaffNote from "@/components/practice/StaffNote";
 import { usePracticeRound } from "@/components/hooks/usePracticeRound";
-import { playPitch, stopPlayback } from "@/lib/practice/playback";
+import { playPitch, stopPlayback, unlockPlayback } from "@/lib/practice/playback";
 import { ROUND_LENGTH } from "@/lib/practice";
 import { cn } from "@/lib/utils";
 import type { PitchId, PracticeSetMode } from "@/types";
@@ -72,6 +72,7 @@ export default function PracticeRound() {
   }, []);
 
   function handleNote(tapped: PitchId) {
+    unlockPlayback();
     const result = round.onNote(tapped);
     if (result !== undefined && soundOn) {
       playPitch(result.target);
@@ -90,8 +91,13 @@ export default function PracticeRound() {
     round.startRound(nextMode);
   }
 
+  function handleNextAfterWrong() {
+    stopPlayback();
+    round.nextAfterWrong();
+  }
+
   return (
-    <div className="flex min-h-0 w-full max-w-full flex-1 flex-col overflow-x-hidden">
+    <div className="flex min-h-0 w-full max-w-full flex-1 flex-col overflow-x-hidden" onPointerDown={unlockPlayback}>
       <p className="text-muted-foreground mx-4 mt-1 shrink-0 text-sm">{promptFor(round)}</p>
 
       <section className="border-border mx-4 shrink-0 border-b py-2 sm:py-3" aria-label="Score">
@@ -174,7 +180,7 @@ export default function PracticeRound() {
                 <ActionButton variant="secondary" onClick={round.reveal}>
                   Reveal
                 </ActionButton>
-                <ActionButton onClick={round.nextAfterWrong}>Next</ActionButton>
+                <ActionButton onClick={handleNextAfterWrong}>Next</ActionButton>
               </div>
             ) : null}
             <div className="mt-2 flex flex-col justify-end">
