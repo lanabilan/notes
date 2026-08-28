@@ -350,11 +350,11 @@ VexFlow adds bundle weight — keep staff redraw scoped to pitch changes; avoid 
 
 #### Automated
 
-- [x] 4.1 `npm run lint` passes
-- [x] 4.2 `npm run build` passes
+- [x] 4.1 `npm run lint` passes — cf55a78
+- [x] 4.2 `npm run build` passes — cf55a78
 
 #### Manual
 
-- [x] 4.3 Phone-width: full round without H-scroll or login
-- [x] 4.4 `/auth/signin` still loads
-- [x] 4.5 No ads/tracking scripts added
+- [x] 4.3 Phone-width: full round without H-scroll or login — cf55a78
+- [x] 4.4 `/auth/signin` still loads — cf55a78
+- [x] 4.5 No ads/tracking scripts added — cf55a78

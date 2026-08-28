@@ -1,9 +1,9 @@
 ---
 change_id: guest-practice-round
 title: Guest practice round
-status: implementing
+status: implemented
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-28
 archived_at: null
 ---
 
