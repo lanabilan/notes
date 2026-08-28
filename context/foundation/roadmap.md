@@ -3,7 +3,7 @@ project: "ReadTheKey"
 version: 1
 status: draft
 created: 2026-08-23
-updated: 2026-08-25
+updated: 2026-08-28
 prd_version: 1
 main_goal: speed
 top_blocker: time
@@ -28,7 +28,7 @@ Existing piano-note apps interrupt practice with ads or paywalls. ReadTheKey is 
 | ID    | Change ID                 | Outcome (user can …)                                                                 | Prerequisites | PRD refs                                      | Status   |
 | ----- | ------------------------- | ------------------------------------------------------------------------------------ | ------------- | --------------------------------------------- | -------- |
 | F-01  | mobile-web-shell          | (foundation) Deployable mobile-first web shell is in place                           | —             | FR-010, NFR mobile/offline                    | done     |
-| S-01  | guest-practice-round      | Guest can complete a 10-note treble practice round on mobile with feedback + summary | F-01          | US-01, FR-001–005, FR-007, FR-009, FR-010      | proposed |
+| S-01  | guest-practice-round      | Guest can complete a 10-note treble practice round on mobile with feedback + summary | F-01          | US-01, FR-001–005, FR-007, FR-009, FR-010      | done     |
 | F-02  | oauth-profile-scaffold    | (foundation) OAuth sign-in + profile store scaffold is in place                      | F-01          | Access Control, FR-008                        | proposed |
 | S-02  | oauth-profile-progress    | Signed-in user can save practice progress in their OAuth profile                     | S-01, F-02    | FR-008                                        | proposed |
 
@@ -96,7 +96,7 @@ Foundations below assume these are present and do NOT re-scaffold them.
 - **Unknowns:**
   - Solfège vs letter names (default letter names) — Owner: user. Block: no.
 - **Risk:** This is the validation milestone for free, ad-free practice. Mobile layout (staff + piano on one screen) is the main execution risk; defer audio and desktop keyboard aids.
-- **Status:** proposed
+- **Status:** done
 
 ### S-02: OAuth profile progress
 
@@ -145,3 +145,4 @@ Foundations below assume these are present and do NOT re-scaffold them.
 ## Done
 
 - **F-01: (foundation) A deployable mobile-first web app shell is in place so practice UI can ship without redoing hosting/bootstrap per slice.** — Archived 2026-08-25 → `context/archive/2026-08-23-mobile-web-shell/`. Lesson: —.
+- **S-01: Guest can open the app on a phone, complete a 10-note treble-clef round (natural notes C4–G5) on an on-screen piano, get instant correct/wrong feedback, optionally reveal the correct key via a button, see accuracy + average response time, and start another round or next set — with session-only progress (not saved) and no login wall.** — Archived 2026-08-28 → `context/archive/2026-08-25-guest-practice-round/`. Lesson: —.
