@@ -168,7 +168,18 @@ Set `SUPABASE_URL` and `SUPABASE_KEY` as secrets in your Cloudflare dashboard or
 
 ## CI
 
-GitHub Actions runs lint + build on every push and PR to `master`. Configure `SUPABASE_URL` and `SUPABASE_KEY` as repository secrets in GitHub for the build step.
+GitHub Actions runs lint + build on every push and PR to `main`. Pushes to `main` also deploy to Cloudflare Workers after a green build.
+
+Configure these repository secrets in GitHub:
+
+| Secret | Used for |
+| --- | --- |
+| `SUPABASE_URL` | Build (Astro env validation) |
+| `SUPABASE_KEY` | Build (Astro env validation) |
+| `CLOUDFLARE_API_TOKEN` | Deploy (`wrangler deploy`) |
+| `CLOUDFLARE_ACCOUNT_ID` | Deploy (`wrangler deploy`) |
+
+Create a Cloudflare API token with **Workers Scripts: Edit** permission for the `readthekey` worker. Runtime Supabase credentials on the worker are separate — set them with `npx wrangler secret put` or in the Cloudflare dashboard.
 
 ## License
 
