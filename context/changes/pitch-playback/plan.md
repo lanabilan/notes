@@ -181,26 +181,26 @@ None. Session-only UI state; no persistence, no schema, no feature flag.
 
 #### Automated
 
-- [x] 1.1 `npm run lint` passes
-- [x] 1.2 `npm run build` passes
-- [x] 1.3 `pitchToHz("A4")` is 440 (compile/export via build; no test runner)
+- [x] 1.1 `npm run lint` passes — d2990d1
+- [x] 1.2 `npm run build` passes — d2990d1
+- [x] 1.3 `pitchToHz("A4")` is 440 (compile/export via build; no test runner) — d2990d1
 
 #### Manual
 
-- [x] 1.4 Playback module does not construct AudioContext at import time
+- [x] 1.4 Playback module does not construct AudioContext at import time — d2990d1
 
 ### Phase 2: Dwell, mute, and round wiring
 
 #### Automated
 
-- [ ] 2.1 `npm run lint` passes
-- [ ] 2.2 `npm run build` passes
-- [ ] 2.3 No new audio/sample dependencies in `package.json`
+- [x] 2.1 `npm run lint` passes
+- [x] 2.2 `npm run build` passes
+- [x] 2.3 No new audio/sample dependencies in `package.json`
 
 #### Manual
 
-- [ ] 2.4 Correct path: staff holds the judged note, tone plays, then advances; “Correct” does not stick on the next note
-- [ ] 2.5 Wrong path: correct pitch plays; Reveal / Next unchanged; no auto-highlight
-- [ ] 2.6 Mute toggle (default on) silences; next unmuted tap sounds; refresh resets to on
-- [ ] 2.7 Phone-width (~390px) + first tap makes sound (Safari if available); no H-scroll; no login wall
-- [ ] 2.8 Last-note correct: tone then summary; muted still dwells
+- [x] 2.4 Correct path: staff holds the judged note, tone plays, then advances; “Correct” does not stick on the next note
+- [x] 2.5 Wrong path: correct pitch plays; Reveal / Next unchanged; no auto-highlight
+- [x] 2.6 Mute toggle (default on) silences; next unmuted tap sounds; refresh resets to on
+- [x] 2.7 Phone-width (~390px) + first tap makes sound (Safari if available); no H-scroll; no login wall
+- [x] 2.8 Last-note correct: tone then summary; muted still dwells

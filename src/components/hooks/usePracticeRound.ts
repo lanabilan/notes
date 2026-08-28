@@ -3,7 +3,10 @@ import { useEffect, useRef, useState } from "react";
 import { ROUND_LENGTH, createNoteResult, generateRound, summarizeRound } from "@/lib/practice";
 import type { NoteResult, PitchId, PracticeSetMode, RoundSummary } from "@/types";
 
-export type PracticeUiPhase = "playing" | "wrong" | "summary";
+/** Hold the judged note so ear and eye agree; slightly longer than the playback envelope. */
+const CORRECT_DWELL_MS = 400;
+
+export type PracticeUiPhase = "playing" | "correct" | "wrong" | "summary";
 
 export interface PracticeRoundState {
   mode: PracticeSetMode;
@@ -18,7 +21,7 @@ export interface PracticeRoundState {
   summary: RoundSummary | null;
   otherMode: PracticeSetMode;
   startRound: (nextMode: PracticeSetMode) => void;
-  onNote: (tapped: PitchId) => void;
+  onNote: (tapped: PitchId) => NoteResult | undefined;
   reveal: () => void;
   nextAfterWrong: () => void;
 }
@@ -36,14 +39,30 @@ export function usePracticeRound(): PracticeRoundState {
   const [revealed, setRevealed] = useState(false);
   const [lastFeedback, setLastFeedback] = useState<"correct" | "wrong" | null>(null);
   const shownAtRef = useRef(0);
+  const dwellTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const target = notes.at(index) ?? "C4";
+
+  function clearDwellTimeout() {
+    if (dwellTimeoutRef.current !== null) {
+      clearTimeout(dwellTimeoutRef.current);
+      dwellTimeoutRef.current = null;
+    }
+  }
 
   useEffect(() => {
     if (uiPhase === "playing") {
       shownAtRef.current = performance.now();
     }
   }, [uiPhase, index, notes]);
+
+  useEffect(() => {
+    return () => {
+      if (dwellTimeoutRef.current !== null) {
+        clearTimeout(dwellTimeoutRef.current);
+      }
+    };
+  }, []);
 
   function goToNext(nextResults: NoteResult[]) {
     if (nextResults.length >= ROUND_LENGTH) {
@@ -54,10 +73,12 @@ export function usePracticeRound(): PracticeRoundState {
     }
     setIndex(nextResults.length);
     setUiPhase("playing");
+    setLastFeedback(null);
     setRevealed(false);
   }
 
   function startRound(nextMode: PracticeSetMode) {
+    clearDwellTimeout();
     setMode(nextMode);
     setNotes(generateRound(nextMode));
     setIndex(0);
@@ -67,19 +88,27 @@ export function usePracticeRound(): PracticeRoundState {
     setLastFeedback(null);
   }
 
-  function onNote(tapped: PitchId) {
-    if (uiPhase !== "playing") return;
+  function onNote(tapped: PitchId): NoteResult | undefined {
+    if (uiPhase !== "playing") {
+      return undefined;
+    }
     const responseMs = Math.max(0, performance.now() - shownAtRef.current);
     const result = createNoteResult(target, tapped, responseMs);
     const nextResults = [...results, result];
     setResults(nextResults);
     if (result.correct) {
       setLastFeedback("correct");
-      goToNext(nextResults);
+      setUiPhase("correct");
+      clearDwellTimeout();
+      dwellTimeoutRef.current = setTimeout(() => {
+        dwellTimeoutRef.current = null;
+        goToNext(nextResults);
+      }, CORRECT_DWELL_MS);
     } else {
       setLastFeedback("wrong");
       setUiPhase("wrong");
     }
+    return result;
   }
 
   function reveal() {

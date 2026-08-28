@@ -1,11 +1,13 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { Volume2, VolumeX } from "lucide-react";
 
 import PianoKeyboard from "@/components/practice/PianoKeyboard";
 import StaffNote from "@/components/practice/StaffNote";
 import { usePracticeRound } from "@/components/hooks/usePracticeRound";
+import { playPitch, stopPlayback } from "@/lib/practice/playback";
 import { ROUND_LENGTH } from "@/lib/practice";
 import { cn } from "@/lib/utils";
-import type { PracticeSetMode } from "@/types";
+import type { PitchId, PracticeSetMode } from "@/types";
 
 function modeLabel(mode: PracticeSetMode): string {
   return mode === "random" ? "random" : "stepwise";
@@ -17,6 +19,9 @@ function promptFor(state: ReturnType<typeof usePracticeRound>): string {
   }
   if (state.uiPhase === "wrong") {
     return state.revealed ? `Correct note: ${state.target}` : "Not quite — reveal the answer or go next";
+  }
+  if (state.uiPhase === "correct") {
+    return "That's the correct pitch";
   }
   return "Tap the key that matches the note";
 }
@@ -56,15 +61,56 @@ function ActionButton({
  */
 export default function PracticeRound() {
   const round = usePracticeRound();
+  const [soundOn, setSoundOn] = useState(true);
   const pianoDisabled = round.uiPhase !== "playing";
   const highlightPitch = round.revealed ? round.target : null;
+
+  useEffect(() => {
+    return () => {
+      stopPlayback();
+    };
+  }, []);
+
+  function handleNote(tapped: PitchId) {
+    const result = round.onNote(tapped);
+    if (result !== undefined && soundOn) {
+      playPitch(result.target);
+    }
+  }
+
+  function toggleSound() {
+    if (soundOn) {
+      stopPlayback();
+    }
+    setSoundOn(!soundOn);
+  }
+
+  function handleStartRound(nextMode: PracticeSetMode) {
+    stopPlayback();
+    round.startRound(nextMode);
+  }
 
   return (
     <div className="flex min-h-0 w-full max-w-full flex-1 flex-col overflow-x-hidden">
       <p className="text-muted-foreground mx-4 mt-1 shrink-0 text-sm">{promptFor(round)}</p>
 
       <section className="border-border mx-4 shrink-0 border-b py-2 sm:py-3" aria-label="Score">
-        <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">Score</p>
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">Score</p>
+          <button
+            type="button"
+            onClick={toggleSound}
+            className={cn(
+              "inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-md",
+              "text-muted-foreground hover:bg-accent hover:text-foreground",
+              "focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none",
+            )}
+            aria-label={soundOn ? "Pitch playback on" : "Pitch playback off"}
+            aria-pressed={soundOn}
+          >
+            {soundOn ? <Volume2 className="size-5" aria-hidden /> : <VolumeX className="size-5" aria-hidden />}
+          </button>
+        </div>
         <div className="mt-1 flex min-h-8 flex-wrap items-baseline gap-x-3 gap-y-1">
           {round.uiPhase === "summary" && round.summary ? (
             <>
@@ -92,7 +138,7 @@ export default function PracticeRound() {
             <ActionButton
               className="w-full"
               onClick={() => {
-                round.startRound(round.mode);
+                handleStartRound(round.mode);
               }}
             >
               Practice again
@@ -101,7 +147,7 @@ export default function PracticeRound() {
               variant="outline"
               className="w-full"
               onClick={() => {
-                round.startRound(round.otherMode);
+                handleStartRound(round.otherMode);
               }}
             >
               Next set: {modeLabel(round.otherMode)}
@@ -132,7 +178,7 @@ export default function PracticeRound() {
               </div>
             ) : null}
             <div className="mt-2 flex flex-col justify-end">
-              <PianoKeyboard onNote={round.onNote} disabled={pianoDisabled} highlightPitch={highlightPitch} />
+              <PianoKeyboard onNote={handleNote} disabled={pianoDisabled} highlightPitch={highlightPitch} />
             </div>
           </section>
         </>
