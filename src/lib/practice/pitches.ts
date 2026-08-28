@@ -68,11 +68,55 @@ export const PIANO_BLACK_KEYS: readonly { pitch: PitchId; afterWhiteIndex: numbe
   { pitch: "A#5", afterWhiteIndex: 12 },
 ] as const;
 
-/** Convert `C4` / `C#4` pitch ids to VexFlow keys (`c/4`, `c#/4`). */
-export function toVexKey(pitch: PitchId): string {
-  const match = /^([A-G])([#b]?)(\d)$/.exec(pitch);
+const PITCH_ID_RE = /^([A-G])([#b]?)(\d)$/;
+
+const SEMITONE_FROM_C = {
+  C: 0,
+  D: 2,
+  E: 4,
+  F: 5,
+  G: 7,
+  A: 9,
+  B: 11,
+} as const;
+
+type NaturalLetter = keyof typeof SEMITONE_FROM_C;
+
+const A4_HZ = 440;
+const A4_MIDI = 69;
+
+function parsePitchId(pitch: PitchId): { letter: string; accidental: string; octave: number } {
+  const match = PITCH_ID_RE.exec(pitch);
   if (!match?.[1] || !match[3]) {
     throw new Error(`Invalid pitch id: ${pitch}`);
   }
-  return `${match[1].toLowerCase()}${match[2]}/${match[3]}`;
+  return {
+    letter: match[1],
+    accidental: match[2],
+    octave: Number(match[3]),
+  };
+}
+
+function semitoneFromC(letter: string): number {
+  if (letter in SEMITONE_FROM_C) {
+    return SEMITONE_FROM_C[letter as NaturalLetter];
+  }
+  throw new Error(`Invalid pitch letter: ${letter}`);
+}
+
+/** Convert `C4` / `C#4` pitch ids to VexFlow keys (`c/4`, `c#/4`). */
+export function toVexKey(pitch: PitchId): string {
+  const { letter, accidental, octave } = parsePitchId(pitch);
+  return `${letter.toLowerCase()}${accidental}/${octave}`;
+}
+
+/**
+ * Equal-temperament frequency for a pitch id.
+ * A4 = 440 Hz; C4 = MIDI 60.
+ */
+export function pitchToHz(pitch: PitchId): number {
+  const { letter, accidental, octave } = parsePitchId(pitch);
+  const offset = accidental === "#" ? 1 : accidental === "b" ? -1 : 0;
+  const midi = (octave + 1) * 12 + semitoneFromC(letter) + offset;
+  return A4_HZ * 2 ** ((midi - A4_MIDI) / 12);
 }
