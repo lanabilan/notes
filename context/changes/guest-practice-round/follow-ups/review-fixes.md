@@ -1,5 +1,5 @@
 # Review follow-ups — guest-practice-round (Phases 1–2)
 
-## Deferred
+## Resolved
 
-- **F5 — Piano focus-visible rings** — Skipped in impl review; add `focus-visible` styles on piano keys during Phase 4 mobile polish.
+- **F5 — Piano focus-visible rings** — Added in Phase 4 mobile polish (`PianoKeyboard.tsx`).

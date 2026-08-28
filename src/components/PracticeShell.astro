@@ -7,8 +7,10 @@ import PracticeRound from "@/components/practice/PracticeRound";
   style="padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);"
 >
   <header class="shrink-0 px-4 pt-4 pb-2">
-    <h1 class="text-foreground text-3xl font-bold tracking-tight sm:text-4xl">ReadTheKey</h1>
+    <h1 class="text-foreground text-2xl font-bold tracking-tight sm:text-4xl">ReadTheKey</h1>
   </header>
 
-  <PracticeRound client:only="react" />
+  <div class="flex min-h-0 flex-1 flex-col">
+    <PracticeRound client:only="react" />
+  </div>
 </div>

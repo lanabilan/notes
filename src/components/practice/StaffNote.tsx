@@ -9,7 +9,7 @@ interface StaffNoteProps {
   className?: string;
 }
 
-const STAFF_HEIGHT = 148;
+const STAFF_HEIGHT = 132;
 
 type VexFlowModule = (typeof import("vexflow"))["default"];
 

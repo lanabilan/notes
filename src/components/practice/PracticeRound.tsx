@@ -37,7 +37,7 @@ function ActionButton({
       type="button"
       onClick={onClick}
       className={cn(
-        "inline-flex h-9 items-center justify-center rounded-md px-4 text-sm font-medium transition-colors",
+        "inline-flex min-h-11 items-center justify-center rounded-md px-4 text-sm font-medium transition-colors",
         "focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none",
         variant === "primary" && "bg-primary text-primary-foreground hover:bg-primary/90",
         variant === "secondary" && "bg-secondary text-secondary-foreground hover:bg-secondary/80",
@@ -60,10 +60,10 @@ export default function PracticeRound() {
   const highlightPitch = round.revealed ? round.target : null;
 
   return (
-    <>
-      <p className="text-muted-foreground mx-4 mt-1 shrink-0 text-sm sm:text-base">{promptFor(round)}</p>
+    <div className="flex min-h-0 w-full max-w-full flex-1 flex-col overflow-x-hidden">
+      <p className="text-muted-foreground mx-4 mt-1 shrink-0 text-sm">{promptFor(round)}</p>
 
-      <section className="border-border mx-4 shrink-0 border-b py-3" aria-label="Score">
+      <section className="border-border mx-4 shrink-0 border-b py-2 sm:py-3" aria-label="Score">
         <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">Score</p>
         <div className="mt-1 flex min-h-8 flex-wrap items-baseline gap-x-3 gap-y-1">
           {round.uiPhase === "summary" && round.summary ? (
@@ -87,10 +87,10 @@ export default function PracticeRound() {
       </section>
 
       {round.uiPhase === "summary" ? (
-        <section className="mx-4 flex flex-1 flex-col justify-center gap-4 py-6" aria-label="Summary">
-          <div className="flex flex-col gap-2 sm:flex-row">
+        <section className="mx-4 flex flex-1 flex-col justify-center gap-4 py-4 sm:py-6" aria-label="Summary">
+          <div className="flex flex-col gap-2">
             <ActionButton
-              className="w-full sm:w-auto"
+              className="w-full"
               onClick={() => {
                 round.startRound(round.mode);
               }}
@@ -99,7 +99,7 @@ export default function PracticeRound() {
             </ActionButton>
             <ActionButton
               variant="outline"
-              className="w-full sm:w-auto"
+              className="w-full"
               onClick={() => {
                 round.startRound(round.otherMode);
               }}
@@ -111,29 +111,32 @@ export default function PracticeRound() {
         </section>
       ) : (
         <>
-          <section className="border-border mx-4 flex min-h-0 flex-1 flex-col border-b py-3" aria-label="Staff">
+          <section
+            className="border-border mx-4 flex max-h-40 min-h-0 flex-1 flex-col border-b py-2 sm:max-h-none sm:py-3"
+            aria-label="Staff"
+          >
             <p className="text-muted-foreground shrink-0 text-xs font-medium tracking-wide uppercase">Staff</p>
-            <div className="mt-2 flex min-h-0 flex-1 items-center">
-              <StaffNote pitch={round.target} />
+            <div className="mt-1 flex min-h-0 flex-1 items-center sm:mt-2">
+              <StaffNote pitch={round.target} className="max-h-36 sm:max-h-none" />
             </div>
           </section>
 
-          <section className="mx-4 flex min-h-0 flex-1 flex-col py-3 pb-4" aria-label="Piano">
+          <section className="mx-4 flex min-h-0 shrink-0 flex-col py-2 pb-4 sm:flex-1 sm:py-3" aria-label="Piano">
             <p className="text-muted-foreground shrink-0 text-xs font-medium tracking-wide uppercase">Piano</p>
             {round.uiPhase === "wrong" ? (
-              <div className="mt-2 mb-3 flex flex-wrap gap-2">
+              <div className="mt-2 mb-2 flex flex-wrap gap-2">
                 <ActionButton variant="secondary" onClick={round.reveal}>
                   Reveal
                 </ActionButton>
                 <ActionButton onClick={round.nextAfterWrong}>Next</ActionButton>
               </div>
             ) : null}
-            <div className="mt-2 flex min-h-0 flex-1 flex-col justify-end">
+            <div className="mt-2 flex flex-col justify-end">
               <PianoKeyboard onNote={round.onNote} disabled={pianoDisabled} highlightPitch={highlightPitch} />
             </div>
           </section>
         </>
       )}
-    </>
+    </div>
   );
 }

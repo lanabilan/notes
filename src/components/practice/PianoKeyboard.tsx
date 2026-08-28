@@ -32,9 +32,10 @@ export default function PianoKeyboard({
                 onNote(pitch);
               }}
               className={cn(
-                "border-border bg-card relative h-full min-w-0 flex-1 border border-l-0 first:rounded-l-md first:border-l last:rounded-r-md",
+                "border-border bg-card relative h-full min-h-11 min-w-0 flex-1 border border-l-0 first:rounded-l-md first:border-l last:rounded-r-md",
                 "active:bg-accent disabled:pointer-events-none disabled:opacity-50",
-                highlighted && "bg-accent ring-ring z-10 ring-2 ring-inset",
+                "focus-visible:ring-ring focus-visible:z-30 focus-visible:ring-2 focus-visible:outline-none",
+                highlighted && "bg-accent ring-primary z-10 ring-2 ring-inset",
               )}
             />
           );
@@ -58,9 +59,10 @@ export default function PianoKeyboard({
                 width: `${widthPercent}%`,
               }}
               className={cn(
-                "bg-foreground absolute top-0 z-20 h-[58%] rounded-b-sm",
+                "bg-foreground absolute top-0 z-20 h-[58%] min-h-11 rounded-b-sm",
                 "active:opacity-80 disabled:pointer-events-none disabled:opacity-50",
-                highlighted && "ring-ring ring-offset-background ring-2 ring-offset-1",
+                "focus-visible:ring-ring focus-visible:z-30 focus-visible:ring-2 focus-visible:outline-none",
+                highlighted && "bg-primary ring-primary ring-offset-background ring-2 ring-offset-2",
               )}
             />
           );
