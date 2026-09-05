@@ -1,10 +1,10 @@
 ---
 change_id: oauth-profile-scaffold
 title: Oauth profile scaffold
-status: implemented
+status: archived
 created: 2026-09-05
 updated: 2026-09-05
-archived_at: null
+archived_at: 2026-09-05T13:26:46Z
 ---
 
 ## Notes
