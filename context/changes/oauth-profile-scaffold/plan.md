@@ -307,31 +307,31 @@ Middleware already calls `getUser()` on every request. Do not add a profiles fet
 
 #### Automated
 
-- [x] 2.1 `npm run lint` passes
-- [x] 2.2 `npm run build` passes
-- [x] 2.3 `supabase/.env` (if created) is gitignored; Google secrets are not in tracked files
-- [x] 2.4 New API routes export `prerender = false`
+- [x] 2.1 `npm run lint` passes — d9b0474
+- [x] 2.2 `npm run build` passes — d9b0474
+- [x] 2.3 `supabase/.env` (if created) is gitignored; Google secrets are not in tracked files — d9b0474
+- [x] 2.4 New API routes export `prerender = false` — d9b0474
 
 #### Manual
 
-- [x] 2.5 Google provider configured; local Auth restart picks up config/secrets
-- [x] 2.6 Google CTA completes and returns to `/` with a session (`/dashboard` shows email)
-- [x] 2.7 Denied consent / missing code lands on `/auth/signin?error=` (no 500)
-- [x] 2.8 Email/password sign-in and sign-up still work when used directly
-- [x] 2.9 `/` remains public with no session
+- [x] 2.5 Google provider configured; local Auth restart picks up config/secrets — d9b0474
+- [x] 2.6 Google CTA completes and returns to `/` with a session (`/dashboard` shows email) — d9b0474
+- [x] 2.7 Denied consent / missing code lands on `/auth/signin?error=` (no 500) — d9b0474
+- [x] 2.8 Email/password sign-in and sign-up still work when used directly — d9b0474
+- [x] 2.9 `/` remains public with no session — d9b0474
 
 ### Phase 3: Practice header chrome
 
 #### Automated
 
-- [ ] 3.1 `npm run lint` passes
-- [ ] 3.2 `npm run build` passes
-- [ ] 3.3 `PROTECTED_ROUTES` still does not include `/`
+- [x] 3.1 `npm run lint` passes
+- [x] 3.2 `npm run build` passes
+- [x] 3.3 `PROTECTED_ROUTES` still does not include `/`
 
 #### Manual
 
-- [ ] 3.4 Guest on `/` (~390px): immediate drill; tappable Sign in; no login wall; no H-scroll
-- [ ] 3.5 Signed-in header on `/` after Google; practice island still works
-- [ ] 3.6 Dashboard link + unauthenticated redirect + Back to practice
-- [ ] 3.7 Sign out from header returns to `/` as guest
-- [ ] 3.8 Email/password is not linked from the practice header
+- [x] 3.4 Guest on `/` (~390px): immediate drill; tappable Sign in; no login wall; no H-scroll
+- [x] 3.5 Signed-in header on `/` after Google; practice island still works
+- [x] 3.6 Dashboard link + unauthenticated redirect + Back to practice
+- [x] 3.7 Sign out from header returns to `/` as guest
+- [x] 3.8 Email/password is not linked from the practice header

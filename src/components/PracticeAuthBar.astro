@@ -1,0 +1,36 @@
+---
+const user = Astro.locals.user;
+const email = user?.email ?? "";
+const localPart = email.includes("@") ? email.slice(0, email.indexOf("@")) : email;
+---
+
+{
+  user ? (
+    <div class="flex min-w-0 flex-wrap items-center justify-end gap-x-1">
+      <span class="text-muted-foreground max-w-[8rem] truncate px-2 text-sm" title={email}>
+        {localPart}
+      </span>
+      <a
+        href="/dashboard"
+        class="text-foreground inline-flex min-h-11 items-center px-2 text-sm font-medium underline-offset-4 hover:underline"
+      >
+        Dashboard
+      </a>
+      <form method="POST" action="/api/auth/signout">
+        <button
+          type="submit"
+          class="text-foreground inline-flex min-h-11 items-center px-2 text-sm font-medium underline-offset-4 hover:underline"
+        >
+          Sign out
+        </button>
+      </form>
+    </div>
+  ) : (
+    <a
+      href="/auth/signin"
+      class="text-foreground inline-flex min-h-11 items-center px-2 text-sm font-medium underline-offset-4 hover:underline"
+    >
+      Sign in
+    </a>
+  )
+}

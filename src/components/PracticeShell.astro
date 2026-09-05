@@ -1,4 +1,5 @@
 ---
+import PracticeAuthBar from "@/components/PracticeAuthBar.astro";
 import PracticeRound from "@/components/practice/PracticeRound";
 ---
 
@@ -6,8 +7,9 @@ import PracticeRound from "@/components/practice/PracticeRound";
   class="bg-background text-foreground flex min-h-dvh w-full max-w-full flex-col overflow-x-hidden"
   style="padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);"
 >
-  <header class="shrink-0 px-4 pt-4 pb-2">
+  <header class="flex shrink-0 flex-wrap items-center justify-between gap-x-3 gap-y-1 px-4 pt-4 pb-2">
     <h1 class="text-foreground text-2xl font-bold tracking-tight sm:text-4xl">ReadTheKey</h1>
+    <PracticeAuthBar />
   </header>
 
   <div class="flex min-h-0 flex-1 flex-col">
