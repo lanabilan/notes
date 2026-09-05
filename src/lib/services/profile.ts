@@ -13,17 +13,34 @@ function readField(row: object, key: string): unknown {
 }
 
 function asNullableNumber(value: unknown): number | null {
-  if (value === null) {
+  if (value === null || value === undefined) {
     return null;
   }
-  return typeof value === "number" && Number.isFinite(value) ? value : null;
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return value;
+  }
+  if (typeof value === "bigint") {
+    const n = Number(value);
+    return Number.isFinite(n) ? n : null;
+  }
+  if (typeof value === "string" && value.trim() !== "") {
+    const n = Number(value);
+    return Number.isFinite(n) ? n : null;
+  }
+  return null;
 }
 
 function asNullableString(value: unknown): string | null {
-  if (value === null) {
+  if (value === null || value === undefined) {
     return null;
   }
-  return typeof value === "string" ? value : null;
+  if (typeof value === "string") {
+    return value;
+  }
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    return value.toISOString();
+  }
+  return null;
 }
 
 function mapProfile(value: unknown): Profile | null {
@@ -31,12 +48,14 @@ function mapProfile(value: unknown): Profile | null {
     return null;
   }
 
-  const id = readField(value, "id");
-  const createdAt = readField(value, "created_at");
-  const updatedAt = readField(value, "updated_at");
-  if (typeof id !== "string" || typeof createdAt !== "string" || typeof updatedAt !== "string") {
+  const idValue = readField(value, "id");
+  if (typeof idValue !== "string" || idValue === "") {
     return null;
   }
+  const id = idValue;
+
+  const createdAt = asNullableString(readField(value, "created_at")) ?? "";
+  const updatedAt = asNullableString(readField(value, "updated_at")) ?? createdAt;
 
   const currentSet = readField(value, "current_set");
 
@@ -66,7 +85,7 @@ export async function updateProfileProgress(
   userId: string,
   patch: ProfileProgressWrite,
 ): Promise<boolean> {
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from("profiles")
     .update({
       current_set: patch.current_set,
@@ -74,12 +93,7 @@ export async function updateProfileProgress(
       last_average_response_ms: patch.last_average_response_ms,
       last_completed_at: new Date().toISOString(),
     })
-    .eq("id", userId)
-    .select("id");
+    .eq("id", userId);
 
-  if (error || !Array.isArray(data)) {
-    return false;
-  }
-
-  return data.length > 0;
+  return error === null;
 }

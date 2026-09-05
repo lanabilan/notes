@@ -308,30 +308,30 @@ Middleware already calls `getUser()` every request. Profile SELECT runs only on 
 
 #### Automated
 
-- [x] 2.1 `npm run lint` passes
-- [x] 2.2 `npm run build` passes
-- [x] 2.3 `PROTECTED_ROUTES` still does not include `/`
+- [x] 2.1 `npm run lint` passes — c5d0fc1
+- [x] 2.2 `npm run build` passes — c5d0fc1
+- [x] 2.3 `PROTECTED_ROUTES` still does not include `/` — c5d0fc1
 
 #### Manual
 
-- [x] 2.4 Guest: complete a round, refresh → mode is random, no `/api/profile` in the network panel
-- [x] 2.5 Signed-in: complete a stepwise round, refresh `/` → next round is stepwise
-- [x] 2.6 Signed-in: complete a round, Studio columns match the summary (`Math.round` of accuracy and avg ms)
-- [x] 2.7 Failed save (stop Worker or revoke session) → summary CTAs still work; no error line
-- [x] 2.8 Sign in from the header mid-round or on guest summary → land on `/` as signed-in with a new round (in-memory guest round gone)
-- [x] 2.9 ~390px: drill + header still no H-scroll; Sign in / identity control unchanged
+- [x] 2.4 Guest: complete a round, refresh → mode is random, no `/api/profile` in the network panel — c5d0fc1
+- [x] 2.5 Signed-in: complete a stepwise round, refresh `/` → next round is stepwise — c5d0fc1
+- [x] 2.6 Signed-in: complete a round, Studio columns match the summary (`Math.round` of accuracy and avg ms) — c5d0fc1
+- [x] 2.7 Failed save (stop Worker or revoke session) → summary CTAs still work; no error line — c5d0fc1
+- [x] 2.8 Sign in from the header mid-round or on guest summary → land on `/` as signed-in with a new round (in-memory guest round gone) — c5d0fc1
+- [x] 2.9 ~390px: drill + header still no H-scroll; Sign in / identity control unchanged — c5d0fc1
 
 ### Phase 3: Dashboard last-round UI
 
 #### Automated
 
-- [ ] 3.1 `npm run lint` passes
-- [ ] 3.2 `npm run build` passes
+- [x] 3.1 `npm run lint` passes
+- [x] 3.2 `npm run build` passes
 
 #### Manual
 
-- [ ] 3.3 New signed-in user (null columns): dashboard empty state; Back to practice and Sign out work
-- [ ] 3.4 After a saved round: dashboard numbers match Studio / the last summary
-- [ ] 3.5 Unauthenticated `/dashboard` still redirects to `/auth/signin`
-- [ ] 3.6 Visual: light practice tokens, not cosmic; `/auth/signin` remains cosmic
-- [ ] 3.7 ~390px dashboard: no H-scroll
+- [x] 3.3 New signed-in user (null columns): dashboard empty state; Back to practice and Sign out work
+- [x] 3.4 After a saved round: dashboard numbers match Studio / the last summary
+- [x] 3.5 Unauthenticated `/dashboard` still redirects to `/auth/signin`
+- [x] 3.6 Visual: light practice tokens, not cosmic; `/auth/signin` remains cosmic
+- [x] 3.7 ~390px dashboard: no H-scroll

@@ -11,6 +11,7 @@ const canPersist = Boolean(user && supabase);
 
 let initialMode: PracticeSetMode = "random";
 if (user && supabase) {
+  await supabase.auth.getUser();
   const profile = await getProfile(supabase, user.id);
   initialMode = profile?.current_set ?? "random";
 }

@@ -71,6 +71,8 @@ export default function PracticeRound({
   const persistedRoundIdRef = useRef<number | null>(null);
   const pianoDisabled = round.uiPhase !== "playing";
   const highlightPitch = round.revealed ? round.target : null;
+  const accuracyPercent = round.summary?.accuracyPercent;
+  const averageResponseMs = round.summary?.averageResponseMs;
 
   useEffect(() => {
     return () => {
@@ -79,14 +81,13 @@ export default function PracticeRound({
   }, []);
 
   useEffect(() => {
-    if (!canPersist || round.uiPhase !== "summary" || round.summary === null) {
+    if (!canPersist || round.uiPhase !== "summary") {
+      return;
+    }
+    if (typeof accuracyPercent !== "number" || typeof averageResponseMs !== "number") {
       return;
     }
     if (persistedRoundIdRef.current === round.roundId) {
-      return;
-    }
-    const averageResponseMs = round.summary.averageResponseMs;
-    if (averageResponseMs === null) {
       return;
     }
 
@@ -94,14 +95,15 @@ export default function PracticeRound({
 
     void fetch("/api/profile", {
       method: "POST",
+      credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         current_set: round.mode,
-        last_accuracy_percent: Math.round(round.summary.accuracyPercent),
+        last_accuracy_percent: Math.round(accuracyPercent),
         last_average_response_ms: Math.round(averageResponseMs),
       }),
     }).catch(() => undefined);
-  }, [canPersist, round.mode, round.roundId, round.summary, round.uiPhase]);
+  }, [accuracyPercent, averageResponseMs, canPersist, round.mode, round.roundId, round.uiPhase]);
 
   function handleNote(tapped: PitchId) {
     unlockPlayback();

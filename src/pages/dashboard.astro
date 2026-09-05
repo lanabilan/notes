@@ -1,30 +1,108 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { getProfile } from "@/lib/services/profile";
+import { createClient } from "@/lib/supabase";
+import type { Profile } from "@/types";
 
-const { user } = Astro.locals;
+const user = Astro.locals.user;
+const email = user?.email ?? "";
+
+const supabase = user ? createClient(Astro.request.headers, Astro.cookies) : null;
+if (user && supabase) {
+  await supabase.auth.getUser();
+}
+const profile = user && supabase ? await getProfile(supabase, user.id) : null;
+
+function hasSavedRound(row: Profile | null): row is Profile {
+  return (
+    row != null &&
+    (row.current_set != null ||
+      row.last_accuracy_percent != null ||
+      row.last_average_response_ms != null ||
+      row.last_completed_at != null)
+  );
+}
+
+function formatCompletedAt(iso: string | null): string | null {
+  if (iso === null) {
+    return null;
+  }
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) {
+    return null;
+  }
+  return date.toLocaleString("en-GB", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
+}
+
+const snapshot = hasSavedRound(profile)
+  ? {
+      currentSet: profile.current_set ?? "—",
+      accuracyPercent: profile.last_accuracy_percent == null ? null : Math.round(profile.last_accuracy_percent),
+      averageResponseMs: profile.last_average_response_ms == null ? null : Math.round(profile.last_average_response_ms),
+      completedAt: formatCompletedAt(profile.last_completed_at),
+    }
+  : null;
 ---
 
 <Layout title="Dashboard">
-  <div class="bg-cosmic flex min-h-screen items-center justify-center p-4">
-    <div class="rounded-2xl border border-white/10 bg-white/10 p-8 text-center text-white backdrop-blur-xl">
-      <h1 class="mb-4 bg-gradient-to-r from-blue-200 to-purple-200 bg-clip-text text-3xl font-bold text-transparent">
-        Dashboard
-      </h1>
-      <p class="text-blue-100/80">
-        Welcome, <span class="font-semibold text-white">{user?.email}</span>
-      </p>
-      <p class="mt-2 text-sm text-blue-100/50">This page is only for authenticated users.</p>
-      <p class="mt-4">
-        <a href="/" class="text-sm text-purple-300 hover:underline">Back to practice</a>
-      </p>
-      <form method="POST" action="/api/auth/signout" class="mt-6">
-        <button
-          type="submit"
-          class="rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm transition-colors hover:bg-white/20"
+  <div
+    class="bg-background text-foreground flex min-h-dvh w-full max-w-full flex-col overflow-x-hidden"
+    style="padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);"
+  >
+    <header class="flex shrink-0 flex-wrap items-center justify-between gap-x-3 gap-y-1 px-4 pt-4 pb-2">
+      <h1 class="text-foreground text-2xl font-bold tracking-tight sm:text-4xl">Dashboard</h1>
+      <div class="flex min-w-0 flex-wrap items-center justify-end gap-x-1">
+        <a
+          href="/"
+          class="text-foreground inline-flex min-h-11 items-center px-2 text-sm font-medium underline-offset-4 hover:underline"
         >
-          Sign out
-        </button>
-      </form>
-    </div>
+          Back to practice
+        </a>
+        <form method="POST" action="/api/auth/signout">
+          <button
+            type="submit"
+            class="text-foreground inline-flex min-h-11 items-center px-2 text-sm font-medium underline-offset-4 hover:underline"
+          >
+            Sign out
+          </button>
+        </form>
+      </div>
+    </header>
+
+    <main class="flex min-h-0 min-w-0 flex-1 flex-col px-4 py-4">
+      <p class="text-foreground text-sm break-all">{email}</p>
+
+      {
+        snapshot ? (
+          <dl class="border-border mt-4 space-y-2 border-t pt-4">
+            <div class="flex min-w-0 flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+              <dt class="text-muted-foreground text-sm">Current set</dt>
+              <dd class="text-foreground text-sm">{snapshot.currentSet}</dd>
+            </div>
+            <div class="flex min-w-0 flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+              <dt class="text-muted-foreground text-sm">Last accuracy</dt>
+              <dd class="text-foreground text-sm">
+                {snapshot.accuracyPercent == null ? "—" : `${snapshot.accuracyPercent}%`}
+              </dd>
+            </div>
+            <div class="flex min-w-0 flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+              <dt class="text-muted-foreground text-sm">Avg response</dt>
+              <dd class="text-foreground text-sm">
+                {snapshot.averageResponseMs == null ? "—" : `${snapshot.averageResponseMs} ms`}
+              </dd>
+            </div>
+            <div class="flex min-w-0 flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+              <dt class="text-muted-foreground text-sm">Last completed</dt>
+              <dd class="text-foreground text-sm">{snapshot.completedAt ?? "—"}</dd>
+            </div>
+          </dl>
+        ) : (
+          <p class="text-muted-foreground mt-4 text-sm">No saved round yet</p>
+        )
+      }
+    </main>
   </div>
 </Layout>
