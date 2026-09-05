@@ -324,14 +324,14 @@ Middleware already calls `getUser()` on every request. Do not add a profiles fet
 
 #### Automated
 
-- [x] 3.1 `npm run lint` passes
-- [x] 3.2 `npm run build` passes
-- [x] 3.3 `PROTECTED_ROUTES` still does not include `/`
+- [x] 3.1 `npm run lint` passes — 2e75da2
+- [x] 3.2 `npm run build` passes — 2e75da2
+- [x] 3.3 `PROTECTED_ROUTES` still does not include `/` — 2e75da2
 
 #### Manual
 
-- [x] 3.4 Guest on `/` (~390px): immediate drill; tappable Sign in; no login wall; no H-scroll
-- [x] 3.5 Signed-in header on `/` after Google; practice island still works
-- [x] 3.6 Dashboard link + unauthenticated redirect + Back to practice
-- [x] 3.7 Sign out from header returns to `/` as guest
-- [x] 3.8 Email/password is not linked from the practice header
+- [x] 3.4 Guest on `/` (~390px): immediate drill; tappable Sign in; no login wall; no H-scroll — 2e75da2
+- [x] 3.5 Signed-in header on `/` after Google; practice island still works — 2e75da2
+- [x] 3.6 Dashboard link + unauthenticated redirect + Back to practice — 2e75da2
+- [x] 3.7 Sign out from header returns to `/` as guest — 2e75da2
+- [x] 3.8 Email/password is not linked from the practice header — 2e75da2
