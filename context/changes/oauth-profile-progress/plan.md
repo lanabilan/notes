@@ -325,13 +325,13 @@ Middleware already calls `getUser()` every request. Profile SELECT runs only on 
 
 #### Automated
 
-- [x] 3.1 `npm run lint` passes
-- [x] 3.2 `npm run build` passes
+- [x] 3.1 `npm run lint` passes — 13d8677
+- [x] 3.2 `npm run build` passes — 13d8677
 
 #### Manual
 
-- [x] 3.3 New signed-in user (null columns): dashboard empty state; Back to practice and Sign out work
-- [x] 3.4 After a saved round: dashboard numbers match Studio / the last summary
-- [x] 3.5 Unauthenticated `/dashboard` still redirects to `/auth/signin`
-- [x] 3.6 Visual: light practice tokens, not cosmic; `/auth/signin` remains cosmic
-- [x] 3.7 ~390px dashboard: no H-scroll
+- [x] 3.3 New signed-in user (null columns): dashboard empty state; Back to practice and Sign out work — 13d8677
+- [x] 3.4 After a saved round: dashboard numbers match Studio / the last summary — 13d8677
+- [x] 3.5 Unauthenticated `/dashboard` still redirects to `/auth/signin` — 13d8677
+- [x] 3.6 Visual: light practice tokens, not cosmic; `/auth/signin` remains cosmic — 13d8677
+- [x] 3.7 ~390px dashboard: no H-scroll — 13d8677
