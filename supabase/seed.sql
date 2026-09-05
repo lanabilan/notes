@@ -1,0 +1,1 @@
+-- No seed data. Profile rows are created by the auth.users insert trigger.

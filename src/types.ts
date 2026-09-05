@@ -28,3 +28,14 @@ export interface RoundSummary {
   /** Average response time in ms across all notes; null if no results. */
   averageResponseMs: number | null;
 }
+
+/** Signed-in app row in `public.profiles`. Progress fields stay unused until S-02. */
+export interface Profile {
+  id: string;
+  current_set: PracticeSetMode | null;
+  last_accuracy_percent: number | null;
+  last_average_response_ms: number | null;
+  last_completed_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
