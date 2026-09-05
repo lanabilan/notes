@@ -293,32 +293,32 @@ Middleware already calls `getUser()` on every request. Do not add a profiles fet
 
 #### Automated
 
-- [x] 1.1 `npm run lint` passes
-- [x] 1.2 `npm run build` passes
-- [x] 1.3 Migration file exists under `supabase/migrations/` and enables RLS
+- [x] 1.1 `npm run lint` passes — 027cf2d
+- [x] 1.2 `npm run build` passes — 027cf2d
+- [x] 1.3 Migration file exists under `supabase/migrations/` and enables RLS — 027cf2d
 
 #### Manual
 
-- [x] 1.4 `npx supabase db reset` (or `migration up`) applies cleanly on local Supabase
-- [x] 1.5 Inserting an `auth.users` row creates a matching profiles row with null progress columns
-- [x] 1.6 Anon/guest cannot select another user’s profiles (authenticated owner policy only)
+- [x] 1.4 `npx supabase db reset` (or `migration up`) applies cleanly on local Supabase — 027cf2d
+- [x] 1.5 Inserting an `auth.users` row creates a matching profiles row with null progress columns — 027cf2d
+- [x] 1.6 Anon/guest cannot select another user’s profiles (authenticated owner policy only) — 027cf2d
 
 ### Phase 2: Google OAuth
 
 #### Automated
 
-- [ ] 2.1 `npm run lint` passes
-- [ ] 2.2 `npm run build` passes
-- [ ] 2.3 `supabase/.env` (if created) is gitignored; Google secrets are not in tracked files
-- [ ] 2.4 New API routes export `prerender = false`
+- [x] 2.1 `npm run lint` passes
+- [x] 2.2 `npm run build` passes
+- [x] 2.3 `supabase/.env` (if created) is gitignored; Google secrets are not in tracked files
+- [x] 2.4 New API routes export `prerender = false`
 
 #### Manual
 
-- [ ] 2.5 Google provider configured; local Auth restart picks up config/secrets
-- [ ] 2.6 Google CTA completes and returns to `/` with a session (`/dashboard` shows email)
-- [ ] 2.7 Denied consent / missing code lands on `/auth/signin?error=` (no 500)
-- [ ] 2.8 Email/password sign-in and sign-up still work when used directly
-- [ ] 2.9 `/` remains public with no session
+- [x] 2.5 Google provider configured; local Auth restart picks up config/secrets
+- [x] 2.6 Google CTA completes and returns to `/` with a session (`/dashboard` shows email)
+- [x] 2.7 Denied consent / missing code lands on `/auth/signin?error=` (no 500)
+- [x] 2.8 Email/password sign-in and sign-up still work when used directly
+- [x] 2.9 `/` remains public with no session
 
 ### Phase 3: Practice header chrome
 

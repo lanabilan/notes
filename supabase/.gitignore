@@ -2,6 +2,9 @@
 .branches
 .temp
 
+# Google OAuth client id/secret for local Auth (never commit)
+.env
+
 # dotenvx
 .env.keys
 .env.local

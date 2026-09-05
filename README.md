@@ -139,14 +139,30 @@ Users can then sign in immediately after sign-up without clicking a confirmation
 
 ### Auth routes
 
-| Route                 | Description                                                             |
-| --------------------- | ----------------------------------------------------------------------- |
-| `/auth/signin`        | Email/password sign-in form                                             |
-| `/auth/signup`        | Email/password sign-up form                                             |
-| `/auth/confirm-email` | Post-signup "check your inbox" page                                     |
-| `/dashboard`          | Example protected page (redirects to `/auth/signin` if unauthenticated) |
+Google is the product sign-in path. Email/password remains available as a local/dev fallback.
+
+| Route                    | Description                                                                 |
+| ------------------------ | --------------------------------------------------------------------------- |
+| `/auth/signin`           | Google CTA (primary) plus email/password form                               |
+| `POST /api/auth/oauth`   | Starts Google PKCE; redirects to Google                                     |
+| `GET /api/auth/callback` | Exchanges the OAuth code for a session; redirects to `/`                    |
+| `/auth/signup`           | Email/password sign-up form                                                 |
+| `/auth/confirm-email`    | Post-signup "check your inbox" page                                         |
+| `/dashboard`             | Example protected page (redirects to `/auth/signin` if unauthenticated)     |
 
 Route protection is handled in `src/middleware.ts`. Add paths to the `PROTECTED_ROUTES` array there to require authentication.
+
+### Google sign-in setup
+
+1. Create a Google Cloud OAuth **web** client.
+2. Authorized JavaScript origins: the app origin (for local, `http://localhost:4321` and `http://127.0.0.1:4321`).
+3. Authorized redirect URI is **Supabase Auth's** callback, not the Astro route:
+   - Local: `http://127.0.0.1:54321/auth/v1/callback`
+   - Hosted: `https://<project-ref>.supabase.co/auth/v1/callback`
+4. Put the client id and secret in:
+   - Local: gitignored `supabase/.env` as `SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID` and `SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET`, then `npx supabase stop && npx supabase start`
+   - Hosted: Dashboard → Authentication → Providers → Google
+5. Hosted redirect allow-list must include the production origin and `https://<production-origin>/api/auth/callback`. `supabase/config.toml` only covers the local CLI.
 
 ## Deployment
 

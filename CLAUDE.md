@@ -25,7 +25,8 @@ Full server-side rendering (`output: "server"` in astro.config.mjs). All pages a
 
 - `src/lib/supabase.ts` — creates a Supabase SSR client using `@supabase/ssr` with cookie-based sessions. Uses `astro:env/server` for `SUPABASE_URL` and `SUPABASE_KEY` (server-only secrets declared in astro.config.mjs `env.schema`).
 - `src/middleware.ts` — runs on every request, resolves the current user, attaches to `context.locals.user`. Redirects unauthenticated users away from routes listed in `PROTECTED_ROUTES`.
-- API endpoints: `src/pages/api/auth/{signin,signup,signout}.ts`
+- API endpoints: `src/pages/api/auth/{signin,signup,signout,oauth,callback}.ts`
+- Google OAuth: `POST /api/auth/oauth` starts PKCE; `GET /api/auth/callback` exchanges the code. Provider secrets live in Supabase Auth (local `supabase/.env` or hosted Dashboard), not Astro env.
 - Auth pages: `src/pages/auth/{signin,signup,confirm-email}.astro`
 - Protected page example: `src/pages/dashboard.astro`
 
