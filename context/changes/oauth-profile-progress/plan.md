@@ -292,34 +292,34 @@ Middleware already calls `getUser()` every request. Profile SELECT runs only on 
 
 #### Automated
 
-- [x] 1.1 `npm run lint` passes
-- [x] 1.2 `npm run build` passes
-- [x] 1.3 `src/pages/api/profile.ts` exports `prerender = false`
-- [x] 1.4 `zod` is in `package.json` dependencies
+- [x] 1.1 `npm run lint` passes — ce0df69
+- [x] 1.2 `npm run build` passes — ce0df69
+- [x] 1.3 `src/pages/api/profile.ts` exports `prerender = false` — ce0df69
+- [x] 1.4 `zod` is in `package.json` dependencies — ce0df69
 
 #### Manual
 
-- [x] 1.5 `POST /api/profile` with no session returns 401
-- [x] 1.6 Signed-in `POST` with a valid body updates `current_set` + last-round columns in Studio; `last_completed_at` is set; `updated_at` bumps
-- [x] 1.7 Invalid body (e.g. `current_set: "jazz"`) returns 400; row unchanged
-- [x] 1.8 Guest/anon cannot UPDATE another user’s row (RLS)
+- [x] 1.5 `POST /api/profile` with no session returns 401 — ce0df69
+- [x] 1.6 Signed-in `POST` with a valid body updates `current_set` + last-round columns in Studio; `last_completed_at` is set; `updated_at` bumps — ce0df69
+- [x] 1.7 Invalid body (e.g. `current_set: "jazz"`) returns 400; row unchanged — ce0df69
+- [x] 1.8 Guest/anon cannot UPDATE another user’s row (RLS) — ce0df69
 
 ### Phase 2: Practice load and silent save
 
 #### Automated
 
-- [ ] 2.1 `npm run lint` passes
-- [ ] 2.2 `npm run build` passes
-- [ ] 2.3 `PROTECTED_ROUTES` still does not include `/`
+- [x] 2.1 `npm run lint` passes
+- [x] 2.2 `npm run build` passes
+- [x] 2.3 `PROTECTED_ROUTES` still does not include `/`
 
 #### Manual
 
-- [ ] 2.4 Guest: complete a round, refresh → mode is random, no `/api/profile` in the network panel
-- [ ] 2.5 Signed-in: complete a stepwise round, refresh `/` → next round is stepwise
-- [ ] 2.6 Signed-in: complete a round, Studio columns match the summary (`Math.round` of accuracy and avg ms)
-- [ ] 2.7 Failed save (stop Worker or revoke session) → summary CTAs still work; no error line
-- [ ] 2.8 Sign in from the header mid-round or on guest summary → land on `/` as signed-in with a new round (in-memory guest round gone)
-- [ ] 2.9 ~390px: drill + header still no H-scroll; Sign in / identity control unchanged
+- [x] 2.4 Guest: complete a round, refresh → mode is random, no `/api/profile` in the network panel
+- [x] 2.5 Signed-in: complete a stepwise round, refresh `/` → next round is stepwise
+- [x] 2.6 Signed-in: complete a round, Studio columns match the summary (`Math.round` of accuracy and avg ms)
+- [x] 2.7 Failed save (stop Worker or revoke session) → summary CTAs still work; no error line
+- [x] 2.8 Sign in from the header mid-round or on guest summary → land on `/` as signed-in with a new round (in-memory guest round gone)
+- [x] 2.9 ~390px: drill + header still no H-scroll; Sign in / identity control unchanged
 
 ### Phase 3: Dashboard last-round UI
 

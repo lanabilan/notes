@@ -20,6 +20,7 @@ export interface PracticeRoundState {
   noteNumber: number;
   summary: RoundSummary | null;
   otherMode: PracticeSetMode;
+  roundId: number;
   startRound: (nextMode: PracticeSetMode) => void;
   onNote: (tapped: PitchId) => NoteResult | undefined;
   reveal: () => void;
@@ -30,9 +31,10 @@ function otherSetMode(mode: PracticeSetMode): PracticeSetMode {
   return mode === "random" ? "stepwise" : "random";
 }
 
-export function usePracticeRound(): PracticeRoundState {
-  const [mode, setMode] = useState<PracticeSetMode>("random");
-  const [notes, setNotes] = useState<PitchId[]>(() => generateRound("random"));
+export function usePracticeRound(initialMode: PracticeSetMode = "random"): PracticeRoundState {
+  const [mode, setMode] = useState<PracticeSetMode>(initialMode);
+  const [notes, setNotes] = useState<PitchId[]>(() => generateRound(initialMode));
+  const [roundId, setRoundId] = useState(1);
   const [index, setIndex] = useState(0);
   const [results, setResults] = useState<NoteResult[]>([]);
   const [uiPhase, setUiPhase] = useState<PracticeUiPhase>("playing");
@@ -79,6 +81,7 @@ export function usePracticeRound(): PracticeRoundState {
 
   function startRound(nextMode: PracticeSetMode) {
     clearDwellTimeout();
+    setRoundId((id) => id + 1);
     setMode(nextMode);
     setNotes(generateRound(nextMode));
     setIndex(0);
@@ -134,6 +137,7 @@ export function usePracticeRound(): PracticeRoundState {
     noteNumber: uiPhase === "summary" ? ROUND_LENGTH : index + 1,
     summary: uiPhase === "summary" ? summarizeRound(results) : null,
     otherMode: otherSetMode(mode),
+    roundId,
     startRound,
     onNote,
     reveal,

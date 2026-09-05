@@ -1,6 +1,19 @@
 ---
 import PracticeAuthBar from "@/components/PracticeAuthBar.astro";
 import PracticeRound from "@/components/practice/PracticeRound";
+import { getProfile } from "@/lib/services/profile";
+import { createClient } from "@/lib/supabase";
+import type { PracticeSetMode } from "@/types";
+
+const supabase = createClient(Astro.request.headers, Astro.cookies);
+const user = Astro.locals.user;
+const canPersist = Boolean(user && supabase);
+
+let initialMode: PracticeSetMode = "random";
+if (user && supabase) {
+  const profile = await getProfile(supabase, user.id);
+  initialMode = profile?.current_set ?? "random";
+}
 ---
 
 <div
@@ -13,6 +26,6 @@ import PracticeRound from "@/components/practice/PracticeRound";
   </header>
 
   <div class="flex min-h-0 flex-1 flex-col">
-    <PracticeRound client:only="react" />
+    <PracticeRound client:only="react" canPersist={canPersist} initialMode={initialMode} />
   </div>
 </div>

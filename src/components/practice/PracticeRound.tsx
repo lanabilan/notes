@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
 import PianoKeyboard from "@/components/practice/PianoKeyboard";
@@ -56,12 +56,19 @@ function ActionButton({
 }
 
 /**
- * Full guest practice round island (score, staff, piano, summary).
- * Mount with `client:only="react"`.
+ * Practice round island (score, staff, piano, summary).
+ * Mount with `client:only="react"`. Signed-in sessions persist on summary.
  */
-export default function PracticeRound() {
-  const round = usePracticeRound();
+export default function PracticeRound({
+  canPersist,
+  initialMode,
+}: {
+  canPersist: boolean;
+  initialMode: PracticeSetMode;
+}) {
+  const round = usePracticeRound(initialMode);
   const [soundOn, setSoundOn] = useState(true);
+  const persistedRoundIdRef = useRef<number | null>(null);
   const pianoDisabled = round.uiPhase !== "playing";
   const highlightPitch = round.revealed ? round.target : null;
 
@@ -70,6 +77,31 @@ export default function PracticeRound() {
       stopPlayback();
     };
   }, []);
+
+  useEffect(() => {
+    if (!canPersist || round.uiPhase !== "summary" || round.summary === null) {
+      return;
+    }
+    if (persistedRoundIdRef.current === round.roundId) {
+      return;
+    }
+    const averageResponseMs = round.summary.averageResponseMs;
+    if (averageResponseMs === null) {
+      return;
+    }
+
+    persistedRoundIdRef.current = round.roundId;
+
+    void fetch("/api/profile", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        current_set: round.mode,
+        last_accuracy_percent: Math.round(round.summary.accuracyPercent),
+        last_average_response_ms: Math.round(averageResponseMs),
+      }),
+    }).catch(() => undefined);
+  }, [canPersist, round.mode, round.roundId, round.summary, round.uiPhase]);
 
   function handleNote(tapped: PitchId) {
     unlockPlayback();
