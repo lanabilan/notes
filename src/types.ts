@@ -29,7 +29,7 @@ export interface RoundSummary {
   averageResponseMs: number | null;
 }
 
-/** Signed-in app row in `public.profiles`. Progress fields stay unused until S-02. */
+/** Signed-in app row in `public.profiles`. */
 export interface Profile {
   id: string;
   current_set: PracticeSetMode | null;
@@ -38,4 +38,11 @@ export interface Profile {
   last_completed_at: string | null;
   created_at: string;
   updated_at: string;
+}
+
+/** Client-supplied last-round snapshot. Server sets `last_completed_at`. */
+export interface ProfileProgressWrite {
+  current_set: PracticeSetMode;
+  last_accuracy_percent: number;
+  last_average_response_ms: number;
 }
