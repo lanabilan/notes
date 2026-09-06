@@ -1,10 +1,10 @@
 ---
 change_id: oauth-profile-progress
 title: Oauth profile progress
-status: implemented
+status: archived
 created: 2026-09-05
-updated: 2026-09-05
-archived_at: null
+updated: 2026-09-06
+archived_at: 2026-09-06T12:24:20Z
 ---
 
 ## Notes

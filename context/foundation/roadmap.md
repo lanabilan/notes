@@ -3,7 +3,7 @@ project: "ReadTheKey"
 version: 1
 status: draft
 created: 2026-08-23
-updated: 2026-09-05
+updated: 2026-09-06
 prd_version: 1
 main_goal: speed
 top_blocker: time
@@ -30,7 +30,7 @@ Existing piano-note apps interrupt practice with ads or paywalls. ReadTheKey is 
 | F-01  | mobile-web-shell          | (foundation) Deployable mobile-first web shell is in place                           | —             | FR-010, NFR mobile/offline                    | done     |
 | S-01  | guest-practice-round      | Guest can complete a 10-note treble practice round on mobile with feedback + summary | F-01          | US-01, FR-001–005, FR-007, FR-009, FR-010      | done     |
 | F-02  | oauth-profile-scaffold    | (foundation) OAuth sign-in + profile store scaffold is in place                      | F-01          | Access Control, FR-008                        | done     |
-| S-02  | oauth-profile-progress    | Signed-in user can save practice progress in their OAuth profile                     | S-01, F-02    | FR-008                                        | proposed |
+| S-02  | oauth-profile-progress    | Signed-in user can save practice progress in their OAuth profile                     | S-01, F-02    | FR-008                                        | done     |
 
 ## Streams
 
@@ -109,7 +109,7 @@ Foundations below assume these are present and do NOT re-scaffold them.
 - **Unknowns:**
   - Which OAuth provider(s) to use for v1 — Owner: user. Block: yes (inherits from F-02).
 - **Risk:** Sequenced after the guest drill so a deadline crunch can still ship S-01 without profiles. Under `time`, resist expanding profile into history charts or multi-device sync beyond “saved progress.”
-- **Status:** blocked
+- **Status:** done
 
 ## Backlog Handoff
 
@@ -147,3 +147,4 @@ Foundations below assume these are present and do NOT re-scaffold them.
 - **F-01: (foundation) A deployable mobile-first web app shell is in place so practice UI can ship without redoing hosting/bootstrap per slice.** — Archived 2026-08-25 → `context/archive/2026-08-23-mobile-web-shell/`. Lesson: —.
 - **S-01: Guest can open the app on a phone, complete a 10-note treble-clef round (natural notes C4–G5) on an on-screen piano, get instant correct/wrong feedback, optionally reveal the correct key via a button, see accuracy + average response time, and start another round or next set — with session-only progress (not saved) and no login wall.** — Archived 2026-08-28 → `context/archive/2026-08-25-guest-practice-round/`. Lesson: —.
 - **F-02: (foundation) OAuth sign-in and a profile store for signed-in users are scaffolded so progress can persist without guest storage.** — Archived 2026-09-05 → `context/archive/2026-09-05-oauth-profile-scaffold/`. Lesson: —.
+- **S-02: Signed-in user can save practice progress (scores, current set) in their OAuth profile; guests still practice without saving.** — Archived 2026-09-06 → `context/archive/2026-09-05-oauth-profile-progress/`. Lesson: —.
