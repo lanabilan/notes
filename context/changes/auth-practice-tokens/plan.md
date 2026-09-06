@@ -199,17 +199,17 @@ No data or auth-flow migration. The only removal is unused CSS: `@utility bg-cos
 
 #### Automated
 
-- [x] 1.1 `npm run lint` passes
-- [x] 1.2 `npm run build` passes
-- [x] 1.3 Repo grep: no `bg-cosmic` remaining in `src/`
-- [x] 1.4 Auth files contain no leftover cosmic/purple utility classes
+- [x] 1.1 `npm run lint` passes — 0de79a8
+- [x] 1.2 `npm run build` passes — 0de79a8
+- [x] 1.3 Repo grep: no `bg-cosmic` remaining in `src/` — 0de79a8
+- [x] 1.4 Auth files contain no leftover cosmic/purple utility classes — 0de79a8
 
 #### Manual
 
-- [x] 1.5 `/auth/signin` uses light paper + card; Google → or → email; Sign up and Back to practice work
-- [x] 1.6 `/auth/signup` matches sign-in; no Google; cross-link and Back to practice work
-- [x] 1.7 `/auth/confirm-email` has no emoji; heading/body/links readable
-- [x] 1.8 Google and email/password POSTs still hit the same endpoints; `?error=` still shows
-- [x] 1.9 Field validation, password toggle, and pending submit still work
-- [x] 1.10 ~390px: no H-scroll; tap targets remain `min-h-11`
-- [x] 1.11 `/` and `/dashboard` look unchanged
+- [x] 1.5 `/auth/signin` uses light paper + card; Google → or → email; Sign up and Back to practice work — 0de79a8
+- [x] 1.6 `/auth/signup` matches sign-in; no Google; cross-link and Back to practice work — 0de79a8
+- [x] 1.7 `/auth/confirm-email` has no emoji; heading/body/links readable — 0de79a8
+- [x] 1.8 Google and email/password POSTs still hit the same endpoints; `?error=` still shows — 0de79a8
+- [x] 1.9 Field validation, password toggle, and pending submit still work — 0de79a8
+- [x] 1.10 ~390px: no H-scroll; tap targets remain `min-h-11` — 0de79a8
+- [x] 1.11 `/` and `/dashboard` look unchanged — 0de79a8
