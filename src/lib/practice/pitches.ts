@@ -111,6 +111,30 @@ export function toVexKey(pitch: PitchId): string {
 }
 
 /**
+ * Learner-facing pitch spelling. Naturals pass through; sharp black keys
+ * include the enharmonic flat (`C#4` → `C#4 / Db4`). Not a scoring id.
+ */
+const BLACK_KEY_DISPLAY = {
+  "C#4": "C#4 / Db4",
+  "D#4": "D#4 / Eb4",
+  "F#4": "F#4 / Gb4",
+  "G#4": "G#4 / Ab4",
+  "A#4": "A#4 / Bb4",
+  "C#5": "C#5 / Db5",
+  "D#5": "D#5 / Eb5",
+  "F#5": "F#5 / Gb5",
+  "G#5": "G#5 / Ab5",
+  "A#5": "A#5 / Bb5",
+} as const satisfies Partial<Record<PitchId, string>>;
+
+export function formatPitchName(pitch: PitchId): string {
+  if (pitch in BLACK_KEY_DISPLAY) {
+    return BLACK_KEY_DISPLAY[pitch as keyof typeof BLACK_KEY_DISPLAY];
+  }
+  return pitch;
+}
+
+/**
  * Equal-temperament frequency for a pitch id.
  * A4 = 440 Hz; C4 = MIDI 60.
  */

@@ -1,4 +1,4 @@
-import { PIANO_BLACK_KEYS, PIANO_WHITE_KEYS } from "@/lib/practice";
+import { PIANO_BLACK_KEYS, PIANO_WHITE_KEYS, formatPitchName } from "@/lib/practice";
 import { cn } from "@/lib/utils";
 import type { PitchId } from "@/types";
 
@@ -27,7 +27,7 @@ export default function PianoKeyboard({
               key={pitch}
               type="button"
               disabled={disabled}
-              aria-label={pitch}
+              aria-label={formatPitchName(pitch)}
               onClick={() => {
                 onNote(pitch);
               }}
@@ -50,7 +50,7 @@ export default function PianoKeyboard({
               key={pitch}
               type="button"
               disabled={disabled}
-              aria-label={pitch}
+              aria-label={formatPitchName(pitch)}
               onClick={() => {
                 onNote(pitch);
               }}

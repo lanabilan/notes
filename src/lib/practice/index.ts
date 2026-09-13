@@ -7,6 +7,7 @@ export {
   PIANO_WHITE_KEYS,
   PIANO_BLACK_KEYS,
   toVexKey,
+  formatPitchName,
   pitchToHz,
 } from "./pitches";
 

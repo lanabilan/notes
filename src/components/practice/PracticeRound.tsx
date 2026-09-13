@@ -5,7 +5,7 @@ import PianoKeyboard from "@/components/practice/PianoKeyboard";
 import StaffNote from "@/components/practice/StaffNote";
 import { usePracticeRound } from "@/components/hooks/usePracticeRound";
 import { playPitch, stopPlayback, unlockPlayback } from "@/lib/practice/playback";
-import { ROUND_LENGTH } from "@/lib/practice";
+import { ROUND_LENGTH, formatPitchName } from "@/lib/practice";
 import { cn } from "@/lib/utils";
 import type { PitchId, PracticeSetMode } from "@/types";
 
@@ -22,14 +22,18 @@ function promptFor(state: ReturnType<typeof usePracticeRound>): string {
 
   if (state.uiPhase === "wrong") {
     if (tapped === undefined) {
-      return state.revealed ? `Correct note: ${state.target}` : "Not quite — reveal the answer or go next";
+      return state.revealed
+        ? `Correct note: ${formatPitchName(state.target)}`
+        : "Not quite — reveal the answer or go next";
     }
     return state.revealed
-      ? `You tapped ${tapped}. Correct note: ${state.target}`
-      : `You tapped ${tapped}. Not quite — reveal the answer or go next`;
+      ? `You tapped ${formatPitchName(tapped)}. Correct note: ${formatPitchName(state.target)}`
+      : `You tapped ${formatPitchName(tapped)}. Not quite — reveal the answer or go next`;
   }
   if (state.uiPhase === "correct") {
-    return tapped === undefined ? "That's the correct pitch" : `You tapped ${tapped}. That's the correct pitch`;
+    return tapped === undefined
+      ? "That's the correct pitch"
+      : `You tapped ${formatPitchName(tapped)}. That's the correct pitch`;
   }
   return "Tap the key that matches the note";
 }
