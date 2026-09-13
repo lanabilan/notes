@@ -120,14 +120,14 @@ None.
 
 #### Automated
 
-- [x] 1.1 `npm run lint` passes
-- [x] 1.2 `npm run build` passes
-- [x] 1.3 `PianoKeyboard` wrapper includes `max-w-md` and `mx-auto`
+- [x] 1.1 `npm run lint` passes — ff825d1
+- [x] 1.2 `npm run build` passes — ff825d1
+- [x] 1.3 `PianoKeyboard` wrapper includes `max-w-md` and `mx-auto` — ff825d1
 
 #### Manual
 
-- [x] 1.4 ~390px: piano fills the column; no H-scroll; keys tappable
-- [x] 1.5 Wide desktop: piano capped and centered; keys taller than wide
-- [x] 1.6 Black keys still align on the correct white-key boundaries
-- [x] 1.7 Tap / reveal highlight / disabled / playback still work
-- [x] 1.8 Staff, score, header, and summary width unchanged
+- [x] 1.4 ~390px: piano fills the column; no H-scroll; keys tappable — ff825d1
+- [x] 1.5 Wide desktop: piano capped and centered; keys taller than wide — ff825d1
+- [x] 1.6 Black keys still align on the correct white-key boundaries — ff825d1
+- [x] 1.7 Tap / reveal highlight / disabled / playback still work — ff825d1
+- [x] 1.8 Staff, score, header, and summary width unchanged — ff825d1
