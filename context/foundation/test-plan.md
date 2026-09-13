@@ -68,7 +68,7 @@ orchestrator updates Status as artifacts appear on disk.
 | #   | Phase name                          | Goal (one line)                                                                | Risks covered | Test types                   | Status        | Change folder                  |
 | --- | ----------------------------------- | ------------------------------------------------------------------------------ | ------------- | ---------------------------- | ------------- | ------------------------------ |
 | 1   | Critical-path coverage              | Bootstrap the runner and prove matching + round contract at unit layer         | #1, #3        | unit (+ runner bootstrap)    | complete      | testing-critical-path-coverage |
-| 2   | Guest access and progress isolation | Prove `/` stays public and profile writes cannot cross users or accept garbage | #2, #4, #6    | integration                  | not started   | —                              |
+| 2   | Guest access and progress isolation | Prove `/` stays public and profile writes cannot cross users or accept garbage | #2, #4, #6    | integration                  | change opened | testing-guest-access-and-progress-isolation |
 | 3   | Practice UI contracts               | Prove reveal-on-demand and phone usability without cosmic snapshots            | #7, #5        | component / layout assertion | not started   | —                              |
 | 4   | Quality-gates wiring                | Run the new suite in CI next to lint+build                                     | cross-cutting | gates                        | not started   | —                              |
 
@@ -128,7 +128,11 @@ the relevant rollout phase ships; before that, the sub-section reads
 
 ### 6.2 Adding an integration test
 
-TBD — see §3 Phase 2 for guest `GET /` (no login wall) and profile ownership / invalid-body patterns.
+- **Guest `/` / dashboard gate (Risk #2)**: `src/lib/auth/protected-routes.test.ts`. Path table (`/` public, `/dashboard` gated, `/api/profile` public) against `isProtectedPath` — not the prefix array. Home/shell source check forbids `Astro.redirect` / `context.redirect` on `index.astro` and `PracticeShell.astro`. Do not assert hydrated drill copy. Do not use `getViteConfig` / `app.fetch`.
+- **Profile POST (Risks #4 / #6)**: `src/pages/api/profile.test.ts`. `APIContext` + recording Supabase client. Guest/no-session → 401 and no UPDATE. Invalid bodies → 400 and no UPDATE (table; extra `id` is ownership, not 400). Valid control records `.eq("id", sessionUser)`. Do not mock `@/lib/services/profile`.
+- **Naming**: `<module>.test.ts`. Import `{ describe, expect, it }` from `"vitest"` (no globals).
+- **Run locally**: `npm test`.
+- **Reference tests**: `src/lib/auth/protected-routes.test.ts`, `src/pages/api/profile.test.ts`.
 
 ### 6.3 Adding a practice UI contract test
 
@@ -136,7 +140,11 @@ TBD — see §3 Phase 3 for wrong-answer reveal-on-demand and phone-width usabil
 
 ### 6.4 Adding a test for a new API endpoint
 
-TBD — see §3 Phase 2. Prefer request-level integration: session → status/body AND side-effects. Do not mock the ownership check.
+- Call the exported `POST`/`PATCH` with an `APIContext` (`request` + `cookies`), not a bare `Request`.
+- Mock `astro:env/server` (and the cookie client factory if needed) so standalone Vitest does not load Astro config. Do not use `getViteConfig`.
+- Assert status/body **and** the write side-effect: a recording client that captures `.from(...).update().eq("id", …)`. Unauthenticated island `fetch`es must **401**, not redirect.
+- Do not mock the service that performs the UPDATE (`updateProfileProgress`). Extra body `id` / `user_id` must not retarget the `.eq` id.
+- **Reference test**: `src/pages/api/profile.test.ts`.
 
 ### 6.5 Adding a test for a new practice-set / matching rule
 
@@ -148,6 +156,8 @@ TBD — see §3 Phase 2. Prefer request-level integration: session → status/bo
 ### 6.6 Per-rollout-phase notes
 
 Phase 1 (critical-path coverage): Vitest is a standalone Node config with an explicit `@` alias. Do not “fix” lib tests by switching to `getViteConfig()` — that loads the Cloudflare Astro config and is a known crash surface. CI still does not run `npm test` until §3 Phase 4.
+
+Phase 2 (guest access and progress isolation): no `app.fetch` in Node Vitest. Guest `/` is `isProtectedPath` plus a home/shell source check. `POST /api/profile` is `APIContext` + recording client (RLS parked). Do not mock the profile service. CI still does not run `npm test` until §3 Phase 4.
 
 ## 7. What We Deliberately Don't Test
 

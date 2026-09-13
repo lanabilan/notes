@@ -293,25 +293,25 @@ None. Handler stubs and file reads are cheap.
 
 #### Automated
 
-- [x] 2.1 `npm test` passes
-- [x] 2.2 `npm run lint` passes
-- [x] 2.3 No test file mocks `@/lib/services/profile`
-- [x] 2.4 Flipping `"jazz"` expected from 400 to 200 (or dropping the no-UPDATE assert on that row) makes `npm test` fail
+- [x] 2.1 `npm test` passes — 408c966
+- [x] 2.2 `npm run lint` passes — 408c966
+- [x] 2.3 No test file mocks `@/lib/services/profile` — 408c966
+- [x] 2.4 Flipping `"jazz"` expected from 400 to 200 (or dropping the no-UPDATE assert on that row) makes `npm test` fail — 408c966
 
 #### Manual
 
-- [x] 2.5 A reader can add a new invalid payload by copying the table
-- [x] 2.6 Comments distinguish extra `id` (ownership) from 400 cases, and note 66.6 is valid
+- [x] 2.5 A reader can add a new invalid payload by copying the table — 408c966
+- [x] 2.6 Comments distinguish extra `id` (ownership) from 400 cases, and note 66.6 is valid — 408c966
 
 ### Phase 3: Cookbook (§6.2 / §6.4)
 
 #### Automated
 
-- [ ] 3.1 `npm test` still passes
-- [ ] 3.2 `npm run lint` still passes (markdown is prettier-only if staged)
+- [x] 3.1 `npm test` still passes
+- [x] 3.2 `npm run lint` still passes (markdown is prettier-only if staged)
 
 #### Manual
 
-- [ ] 3.3 §6.2 and §6.4 no longer read “TBD”
-- [ ] 3.4 A new contributor could add an invalid profile field using only §6.2 / §6.4 and `profile.test.ts`
-- [ ] 3.5 §2 Risk #2 Source cell is unchanged (backport deferred)
+- [x] 3.3 §6.2 and §6.4 no longer read “TBD”
+- [x] 3.4 A new contributor could add an invalid profile field using only §6.2 / §6.4 and `profile.test.ts`
+- [x] 3.5 §2 Risk #2 Source cell is unchanged (backport deferred)
