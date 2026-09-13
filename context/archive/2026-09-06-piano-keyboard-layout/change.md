@@ -1,10 +1,10 @@
 ---
 change_id: piano-keyboard-layout
 title: Stop the practice piano from stretching
-status: implemented
+status: archived
 created: 2026-09-06
 updated: 2026-09-13
-archived_at: null
+archived_at: 2026-09-13T12:44:37Z
 ---
 
 ## Notes
