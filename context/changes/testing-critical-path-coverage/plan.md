@@ -329,22 +329,22 @@ None. No production behavior change.
 
 #### Automated
 
-- [x] 3.1 `npm test` passes
-- [x] 3.2 `npm run lint` passes
-- [x] 3.3 No test file contains a recorded `generateRound` output array as `toEqual` expected value
+- [x] 3.1 `npm test` passes — cd566e4
+- [x] 3.2 `npm run lint` passes — cd566e4
+- [x] 3.3 No test file contains a recorded `generateRound` output array as `toEqual` expected value — cd566e4
 
 #### Manual
 
-- [x] 3.4 Stepwise tests mention bounce / neighbors in names or comments
+- [x] 3.4 Stepwise tests mention bounce / neighbors in names or comments — cd566e4
 
 ### Phase 4: Cookbook (§6)
 
 #### Automated
 
-- [ ] 4.1 `npm test` still passes
-- [ ] 4.2 `npm run lint` still passes (markdown is prettier-only if staged)
+- [x] 4.1 `npm test` still passes
+- [x] 4.2 `npm run lint` still passes (markdown is prettier-only if staged)
 
 #### Manual
 
-- [ ] 4.3 §6.1 and §6.5 no longer read “TBD”
-- [ ] 4.4 A new contributor could add a mapping row using only §6.1 / §6.5 and the reference files
+- [x] 4.3 §6.1 and §6.5 no longer read “TBD”
+- [x] 4.4 A new contributor could add a mapping row using only §6.1 / §6.5 and the reference files
