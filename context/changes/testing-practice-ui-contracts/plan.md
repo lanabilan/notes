@@ -263,30 +263,30 @@ New devDependencies only. No schema, API, or production behavior change. Existin
 
 #### Automated
 
-- [x] 1.1 `npm test` passes
-- [x] 1.2 `npm run lint` passes
-- [x] 1.3 `vitest.config.ts` still does not import `astro/config` or `getViteConfig`; default environment is still `"node"`
-- [x] 1.4 Expecting `revealed === true` immediately after a wrong tap makes `npm test` fail
-- [x] 1.5 Removing `round.revealed ?` from the `highlightPitch` assignment makes `npm test` fail
+- [x] 1.1 `npm test` passes — 76984d9
+- [x] 1.2 `npm run lint` passes — 76984d9
+- [x] 1.3 `vitest.config.ts` still does not import `astro/config` or `getViteConfig`; default environment is still `"node"` — 76984d9
+- [x] 1.4 Expecting `revealed === true` immediately after a wrong tap makes `npm test` fail — 76984d9
+- [x] 1.5 Removing `round.revealed ?` from the `highlightPitch` assignment makes `npm test` fail — 76984d9
 
 #### Manual
 
-- [x] 1.6 A reader can see stay → optional Reveal → Next from the hook tests without opening `PracticeRound.tsx`
-- [x] 1.7 A comment near the `lastFeedback` assertion states that `"Wrong"` feedback is not reveal
+- [x] 1.6 A reader can see stay → optional Reveal → Next from the hook tests without opening `PracticeRound.tsx` — 76984d9
+- [x] 1.7 A comment near the `lastFeedback` assertion states that `"Wrong"` feedback is not reveal — 76984d9
 
 ### Phase 2: Phone layout contract (Risk #5)
 
 #### Automated
 
-- [ ] 2.1 `npm test` passes
-- [ ] 2.2 `npm run lint` passes
-- [ ] 2.3 Adding `min-w-[800px]` to a white-key `className` in `PianoKeyboard.tsx` makes `npm test` fail
-- [ ] 2.4 No `*.snap` files added under `src/`
+- [x] 2.1 `npm test` passes
+- [x] 2.2 `npm run lint` passes
+- [x] 2.3 Adding `min-w-[800px]` to a white-key `className` in `PianoKeyboard.tsx` makes `npm test` fail
+- [x] 2.4 No `*.snap` files added under `src/`
 
 #### Manual
 
-- [ ] 2.5 At ~390px width (browser or device), `/` practice piano does not cause page horizontal scroll and keys remain tappable
-- [ ] 2.6 `Welcome.astro` was not used as a test oracle
+- [x] 2.5 At ~390px width (browser or device), `/` practice piano does not cause page horizontal scroll and keys remain tappable
+- [x] 2.6 `Welcome.astro` was not used as a test oracle
 
 ### Phase 3: Cookbook (§6.3 / §6.6)
 
