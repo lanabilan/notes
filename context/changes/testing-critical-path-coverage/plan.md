@@ -305,25 +305,25 @@ None. No production behavior change.
 
 #### Automated
 
-- [x] 1.1 `npm test` exits 0 (zero tests is OK)
-- [x] 1.2 `npm run lint` passes
-- [x] 1.3 `vitest.config.ts` does not import `astro/config` or `getViteConfig`
+- [x] 1.1 `npm test` exits 0 (zero tests is OK) — 546700b
+- [x] 1.2 `npm run lint` passes — 546700b
+- [x] 1.3 `vitest.config.ts` does not import `astro/config` or `getViteConfig` — 546700b
 
 #### Manual
 
-- [x] 1.4 `npm test` output is clearly a Vitest run (not Astro / wrangler)
+- [x] 1.4 `npm test` output is clearly a Vitest run (not Astro / wrangler) — 546700b
 
 ### Phase 2: Matching units (Risk #1)
 
 #### Automated
 
-- [ ] 2.1 `npm test` passes
-- [ ] 2.2 `npm run lint` passes
-- [ ] 2.3 Inverting `(C4, C#4)` expected from false to true makes `npm test` fail
+- [x] 2.1 `npm test` passes
+- [x] 2.2 `npm run lint` passes
+- [x] 2.3 Inverting `(C4, C#4)` expected from false to true makes `npm test` fail
 
 #### Manual
 
-- [ ] 2.4 A reader can add a new mapping row by copying the table
+- [x] 2.4 A reader can add a new mapping row by copying the table
 
 ### Phase 3: Round-contract units (Risk #3)
 
