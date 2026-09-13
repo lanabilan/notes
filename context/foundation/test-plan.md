@@ -67,7 +67,7 @@ orchestrator updates Status as artifacts appear on disk.
 
 | #   | Phase name                          | Goal (one line)                                                                | Risks covered | Test types                   | Status        | Change folder                  |
 | --- | ----------------------------------- | ------------------------------------------------------------------------------ | ------------- | ---------------------------- | ------------- | ------------------------------ |
-| 1   | Critical-path coverage              | Bootstrap the runner and prove matching + round contract at unit layer         | #1, #3        | unit (+ runner bootstrap)    | change opened | testing-critical-path-coverage |
+| 1   | Critical-path coverage              | Bootstrap the runner and prove matching + round contract at unit layer         | #1, #3        | unit (+ runner bootstrap)    | complete      | testing-critical-path-coverage |
 | 2   | Guest access and progress isolation | Prove `/` stays public and profile writes cannot cross users or accept garbage | #2, #4, #6    | integration                  | not started   | —                              |
 | 3   | Practice UI contracts               | Prove reveal-on-demand and phone usability without cosmic snapshots            | #7, #5        | component / layout assertion | not started   | —                              |
 | 4   | Quality-gates wiring                | Run the new suite in CI next to lint+build                                     | cross-cutting | gates                        | not started   | —                              |

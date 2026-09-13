@@ -1,7 +1,7 @@
 ---
 change_id: testing-critical-path-coverage
 title: Bootstrap unit tests for matching and round contract
-status: implemented
+status: impl_reviewed
 created: 2026-09-13
 updated: 2026-09-13
 archived_at: null
