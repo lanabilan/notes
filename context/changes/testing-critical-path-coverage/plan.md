@@ -317,25 +317,25 @@ None. No production behavior change.
 
 #### Automated
 
-- [x] 2.1 `npm test` passes
-- [x] 2.2 `npm run lint` passes
-- [x] 2.3 Inverting `(C4, C#4)` expected from false to true makes `npm test` fail
+- [x] 2.1 `npm test` passes — 0d571e3
+- [x] 2.2 `npm run lint` passes — 0d571e3
+- [x] 2.3 Inverting `(C4, C#4)` expected from false to true makes `npm test` fail — 0d571e3
 
 #### Manual
 
-- [x] 2.4 A reader can add a new mapping row by copying the table
+- [x] 2.4 A reader can add a new mapping row by copying the table — 0d571e3
 
 ### Phase 3: Round-contract units (Risk #3)
 
 #### Automated
 
-- [ ] 3.1 `npm test` passes
-- [ ] 3.2 `npm run lint` passes
-- [ ] 3.3 No test file contains a recorded `generateRound` output array as `toEqual` expected value
+- [x] 3.1 `npm test` passes
+- [x] 3.2 `npm run lint` passes
+- [x] 3.3 No test file contains a recorded `generateRound` output array as `toEqual` expected value
 
 #### Manual
 
-- [ ] 3.4 Stepwise tests mention bounce / neighbors in names or comments
+- [x] 3.4 Stepwise tests mention bounce / neighbors in names or comments
 
 ### Phase 4: Cookbook (§6)
 
