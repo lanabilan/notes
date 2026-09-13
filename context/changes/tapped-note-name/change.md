@@ -1,7 +1,7 @@
 ---
 change_id: tapped-note-name
 title: Show the tapped note name in the prompt
-status: implementing
+status: implemented
 created: 2026-09-13
 updated: 2026-09-13
 archived_at: null

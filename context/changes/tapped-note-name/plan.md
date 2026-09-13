@@ -130,15 +130,15 @@ None.
 
 #### Automated
 
-- [x] 1.1 `npm run lint` passes
-- [x] 1.2 `npm run build` passes
-- [x] 1.3 `promptFor` (or its helper) includes the `You tapped` copy for scored taps
+- [x] 1.1 `npm run lint` passes — b6e9e74
+- [x] 1.2 `npm run build` passes — b6e9e74
+- [x] 1.3 `promptFor` (or its helper) includes the `You tapped` copy for scored taps — b6e9e74
 
 #### Manual
 
-- [x] 1.4 Correct tap: prompt names the id during dwell; score still says Correct
-- [x] 1.5 Wrong tap before Reveal: prompt names the tap; score still says Wrong
-- [x] 1.6 After Reveal: tap id plus `Correct note: {target}`; piano highlights target only
-- [x] 1.7 Playing and summary unchanged; Next / new round reset the prompt
-- [x] 1.8 Black-key tap shows a sharp id, not a flat
-- [x] 1.9 Staff, piano labels, playback, and disabled-during-feedback unchanged
+- [x] 1.4 Correct tap: prompt names the id during dwell; score still says Correct — b6e9e74
+- [x] 1.5 Wrong tap before Reveal: prompt names the tap; score still says Wrong — b6e9e74
+- [x] 1.6 After Reveal: tap id plus `Correct note: {target}`; piano highlights target only — b6e9e74
+- [x] 1.7 Playing and summary unchanged; Next / new round reset the prompt — b6e9e74
+- [x] 1.8 Black-key tap shows a sharp id, not a flat — b6e9e74
+- [x] 1.9 Staff, piano labels, playback, and disabled-during-feedback unchanged — b6e9e74
