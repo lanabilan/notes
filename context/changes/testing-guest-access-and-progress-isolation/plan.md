@@ -280,28 +280,28 @@ None. Handler stubs and file reads are cheap.
 
 #### Automated
 
-- [x] 1.1 `npm test` passes
-- [x] 1.2 `npm run lint` passes
-- [x] 1.3 `vitest.config.ts` still does not import `astro/config` or `getViteConfig`
-- [x] 1.4 Public path `/` is expected unprotected; flipping that expectation to protected makes `npm test` fail
+- [x] 1.1 `npm test` passes — 6becbda
+- [x] 1.2 `npm run lint` passes — 6becbda
+- [x] 1.3 `vitest.config.ts` still does not import `astro/config` or `getViteConfig` — 6becbda
+- [x] 1.4 Public path `/` is expected unprotected; flipping that expectation to protected makes `npm test` fail — 6becbda
 
 #### Manual
 
-- [x] 1.5 A reader can see `/` public vs `/dashboard` gated from the path table without opening middleware
+- [x] 1.5 A reader can see `/` public vs `/dashboard` gated from the path table without opening middleware — 6becbda
 
 ### Phase 2: Profile POST integration (Risks #4 and #6)
 
 #### Automated
 
-- [ ] 2.1 `npm test` passes
-- [ ] 2.2 `npm run lint` passes
-- [ ] 2.3 No test file mocks `@/lib/services/profile`
-- [ ] 2.4 Flipping `"jazz"` expected from 400 to 200 (or dropping the no-UPDATE assert on that row) makes `npm test` fail
+- [x] 2.1 `npm test` passes
+- [x] 2.2 `npm run lint` passes
+- [x] 2.3 No test file mocks `@/lib/services/profile`
+- [x] 2.4 Flipping `"jazz"` expected from 400 to 200 (or dropping the no-UPDATE assert on that row) makes `npm test` fail
 
 #### Manual
 
-- [ ] 2.5 A reader can add a new invalid payload by copying the table
-- [ ] 2.6 Comments distinguish extra `id` (ownership) from 400 cases, and note 66.6 is valid
+- [x] 2.5 A reader can add a new invalid payload by copying the table
+- [x] 2.6 Comments distinguish extra `id` (ownership) from 400 cases, and note 66.6 is valid
 
 ### Phase 3: Cookbook (§6.2 / §6.4)
 
