@@ -69,8 +69,8 @@ orchestrator updates Status as artifacts appear on disk.
 | --- | ----------------------------------- | ------------------------------------------------------------------------------ | ------------- | ---------------------------- | ------------- | ------------------------------ |
 | 1   | Critical-path coverage              | Bootstrap the runner and prove matching + round contract at unit layer         | #1, #3        | unit (+ runner bootstrap)    | complete      | testing-critical-path-coverage |
 | 2   | Guest access and progress isolation | Prove `/` stays public and profile writes cannot cross users or accept garbage | #2, #4, #6    | integration                  | complete      | testing-guest-access-and-progress-isolation |
-| 3   | Practice UI contracts               | Prove reveal-on-demand and phone usability without cosmic snapshots            | #7, #5        | component / layout assertion | change opened | testing-practice-ui-contracts  |
-| 4   | Quality-gates wiring                | Run the new suite in CI next to lint+build                                     | cross-cutting | gates                        | not started   | —                              |
+| 3   | Practice UI contracts               | Prove reveal-on-demand and phone usability without cosmic snapshots            | #7, #5        | component / layout assertion | complete      | testing-practice-ui-contracts  |
+| 4   | Quality-gates wiring                | Run the new suite in CI next to lint+build                                     | cross-cutting | gates                        | change opened | testing-quality-gates-wiring   |
 
 ## 4. Stack
 
@@ -160,11 +160,13 @@ the relevant rollout phase ships; before that, the sub-section reads
 
 ### 6.6 Per-rollout-phase notes
 
-Phase 1 (critical-path coverage): Vitest is a standalone Node config with an explicit `@` alias. Do not “fix” lib tests by switching to `getViteConfig()` — that loads the Cloudflare Astro config and is a known crash surface. CI still does not run `npm test` until §3 Phase 4.
+Phase 1 (critical-path coverage): Vitest is a standalone Node config with an explicit `@` alias. Do not “fix” lib tests by switching to `getViteConfig()` — that loads the Cloudflare Astro config and is a known crash surface. CI runs `npm test` (see Phase 4).
 
-Phase 2 (guest access and progress isolation): no `app.fetch` in Node Vitest. Guest `/` is `isProtectedPath` plus a home/shell source check. `POST /api/profile` is `APIContext` + recording client (RLS parked). Do not mock the profile service. CI still does not run `npm test` until §3 Phase 4.
+Phase 2 (guest access and progress isolation): no `app.fetch` in Node Vitest. Guest `/` is `isProtectedPath` plus a home/shell source check. `POST /api/profile` is `APIContext` + recording client (RLS parked). Do not mock the profile service. CI runs `npm test` (see Phase 4).
 
-Phase 3 (practice UI contracts): default Vitest environment stays `"node"`. jsdom is a per-file pragma on `usePracticeRound.test.ts` only — do not flip the suite or use `getViteConfig()`. Layout is a piano fit-class source check plus manual ~390px smoke. CI still does not run `npm test` until §3 Phase 4.
+Phase 3 (practice UI contracts): default Vitest environment stays `"node"`. jsdom is a per-file pragma on `usePracticeRound.test.ts` only — do not flip the suite or use `getViteConfig()`. Layout is a piano fit-class source check plus manual ~390px smoke. CI runs `npm test` (see Phase 4).
+
+Phase 4 (quality-gates wiring): same GitHub Actions `ci` job. `npm test` runs after lint and before build. No `SUPABASE_*` on the test step. Do not add a second workflow or `getViteConfig()`. Source check: `src/lib/ci-workflow.test.ts`. Add further CI steps by editing `.github/workflows/ci.yml`, not a new workflow.
 
 ## 7. What We Deliberately Don't Test
 

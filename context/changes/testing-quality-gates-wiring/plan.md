@@ -192,26 +192,26 @@ PRs and pushes to `main` will run the existing 8 test files. No new GitHub secre
 
 #### Automated
 
-- [x] 1.1 `npm test` passes
-- [x] 1.2 `npm run lint` passes
-- [x] 1.3 `.github/workflows/ci.yml` contains `npm test` after `npm run lint` and before `npm run build`
-- [x] 1.4 Removing the `npm test` step (or commenting it out) makes `npm test` fail
-- [x] 1.5 `vitest.config.ts` still does not import `astro/config` or `getViteConfig`
+- [x] 1.1 `npm test` passes — 3490d77
+- [x] 1.2 `npm run lint` passes — 3490d77
+- [x] 1.3 `.github/workflows/ci.yml` contains `npm test` after `npm run lint` and before `npm run build` — 3490d77
+- [x] 1.4 Removing the `npm test` step (or commenting it out) makes `npm test` fail — 3490d77
+- [x] 1.5 `vitest.config.ts` still does not import `astro/config` or `getViteConfig` — 3490d77
 
 #### Manual
 
-- [x] 1.6 A reader can see lint → test → build in `ci.yml` without opening GitHub Actions
-- [x] 1.7 The test step has no `env:` block
+- [x] 1.6 A reader can see lint → test → build in `ci.yml` without opening GitHub Actions — 3490d77
+- [x] 1.7 The test step has no `env:` block — 3490d77
 
 ### Phase 2: Cookbook and CLAUDE.md
 
 #### Automated
 
-- [ ] 2.1 `npm test` still passes
-- [ ] 2.2 `npm run lint` still passes (markdown/CLAUDE are prettier-only if staged)
+- [x] 2.1 `npm test` still passes
+- [x] 2.2 `npm run lint` still passes (markdown/CLAUDE are prettier-only if staged)
 
 #### Manual
 
-- [ ] 2.3 §6.6 Phase 4 note is present; Phase 1–3 no longer say CI waits on Phase 4
-- [ ] 2.4 `CLAUDE.md` CI section says `main` and `npm test`
-- [ ] 2.5 §2 risk Source cells are unchanged
+- [x] 2.3 §6.6 Phase 4 note is present; Phase 1–3 no longer say CI waits on Phase 4
+- [x] 2.4 `CLAUDE.md` CI section says `main` and `npm test`
+- [x] 2.5 §2 risk Source cells are unchanged
