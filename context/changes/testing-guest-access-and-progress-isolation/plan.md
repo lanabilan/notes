@@ -307,11 +307,11 @@ None. Handler stubs and file reads are cheap.
 
 #### Automated
 
-- [x] 3.1 `npm test` still passes
-- [x] 3.2 `npm run lint` still passes (markdown is prettier-only if staged)
+- [x] 3.1 `npm test` still passes — a930a49
+- [x] 3.2 `npm run lint` still passes (markdown is prettier-only if staged) — a930a49
 
 #### Manual
 
-- [x] 3.3 §6.2 and §6.4 no longer read “TBD”
-- [x] 3.4 A new contributor could add an invalid profile field using only §6.2 / §6.4 and `profile.test.ts`
-- [x] 3.5 §2 Risk #2 Source cell is unchanged (backport deferred)
+- [x] 3.3 §6.2 and §6.4 no longer read “TBD” — a930a49
+- [x] 3.4 A new contributor could add an invalid profile field using only §6.2 / §6.4 and `profile.test.ts` — a930a49
+- [x] 3.5 §2 Risk #2 Source cell is unchanged (backport deferred) — a930a49

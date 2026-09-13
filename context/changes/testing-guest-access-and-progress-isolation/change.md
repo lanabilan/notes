@@ -1,7 +1,7 @@
 ---
 change_id: testing-guest-access-and-progress-isolation
 title: Integration tests for guest drill access and profile isolation
-status: implementing
+status: implemented
 created: 2026-09-13
 updated: 2026-09-13
 archived_at: null
