@@ -292,11 +292,11 @@ New devDependencies only. No schema, API, or production behavior change. Existin
 
 #### Automated
 
-- [x] 3.1 `npm test` still passes
-- [x] 3.2 `npm run lint` still passes (markdown is prettier-only if staged)
+- [x] 3.1 `npm test` still passes — 667baac
+- [x] 3.2 `npm run lint` still passes (markdown is prettier-only if staged) — 667baac
 
 #### Manual
 
-- [x] 3.3 §6.3 no longer reads “TBD”
-- [x] 3.4 A new contributor could add a reveal transition using only §6.3 and `usePracticeRound.test.ts`
-- [x] 3.5 §2 risk Source cells are unchanged
+- [x] 3.3 §6.3 no longer reads “TBD” — 667baac
+- [x] 3.4 A new contributor could add a reveal transition using only §6.3 and `usePracticeRound.test.ts` — 667baac
+- [x] 3.5 §2 risk Source cells are unchanged — 667baac

@@ -1,7 +1,7 @@
 ---
 change_id: testing-practice-ui-contracts
 title: Component tests for reveal-on-demand and phone layout
-status: implementing
+status: implemented
 created: 2026-09-13
 updated: 2026-09-13
 archived_at: null
