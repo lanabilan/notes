@@ -341,10 +341,10 @@ None. No production behavior change.
 
 #### Automated
 
-- [x] 4.1 `npm test` still passes
-- [x] 4.2 `npm run lint` still passes (markdown is prettier-only if staged)
+- [x] 4.1 `npm test` still passes — 748f81d
+- [x] 4.2 `npm run lint` still passes (markdown is prettier-only if staged) — 748f81d
 
 #### Manual
 
-- [x] 4.3 §6.1 and §6.5 no longer read “TBD”
-- [x] 4.4 A new contributor could add a mapping row using only §6.1 / §6.5 and the reference files
+- [x] 4.3 §6.1 and §6.5 no longer read “TBD” — 748f81d
+- [x] 4.4 A new contributor could add a mapping row using only §6.1 / §6.5 and the reference files — 748f81d
