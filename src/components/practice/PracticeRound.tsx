@@ -17,11 +17,19 @@ function promptFor(state: ReturnType<typeof usePracticeRound>): string {
   if (state.uiPhase === "summary") {
     return "Round complete — practice again or switch set";
   }
+
+  const tapped = state.uiPhase === "correct" || state.uiPhase === "wrong" ? state.results.at(-1)?.tapped : undefined;
+
   if (state.uiPhase === "wrong") {
-    return state.revealed ? `Correct note: ${state.target}` : "Not quite — reveal the answer or go next";
+    if (tapped === undefined) {
+      return state.revealed ? `Correct note: ${state.target}` : "Not quite — reveal the answer or go next";
+    }
+    return state.revealed
+      ? `You tapped ${tapped}. Correct note: ${state.target}`
+      : `You tapped ${tapped}. Not quite — reveal the answer or go next`;
   }
   if (state.uiPhase === "correct") {
-    return "That's the correct pitch";
+    return tapped === undefined ? "That's the correct pitch" : `You tapped ${tapped}. That's the correct pitch`;
   }
   return "Tap the key that matches the note";
 }
