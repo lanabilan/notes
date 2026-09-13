@@ -68,8 +68,8 @@ orchestrator updates Status as artifacts appear on disk.
 | #   | Phase name                          | Goal (one line)                                                                | Risks covered | Test types                   | Status        | Change folder                  |
 | --- | ----------------------------------- | ------------------------------------------------------------------------------ | ------------- | ---------------------------- | ------------- | ------------------------------ |
 | 1   | Critical-path coverage              | Bootstrap the runner and prove matching + round contract at unit layer         | #1, #3        | unit (+ runner bootstrap)    | complete      | testing-critical-path-coverage |
-| 2   | Guest access and progress isolation | Prove `/` stays public and profile writes cannot cross users or accept garbage | #2, #4, #6    | integration                  | change opened | testing-guest-access-and-progress-isolation |
-| 3   | Practice UI contracts               | Prove reveal-on-demand and phone usability without cosmic snapshots            | #7, #5        | component / layout assertion | not started   | —                              |
+| 2   | Guest access and progress isolation | Prove `/` stays public and profile writes cannot cross users or accept garbage | #2, #4, #6    | integration                  | complete      | testing-guest-access-and-progress-isolation |
+| 3   | Practice UI contracts               | Prove reveal-on-demand and phone usability without cosmic snapshots            | #7, #5        | component / layout assertion | change opened | testing-practice-ui-contracts  |
 | 4   | Quality-gates wiring                | Run the new suite in CI next to lint+build                                     | cross-cutting | gates                        | not started   | —                              |
 
 ## 4. Stack
@@ -136,7 +136,12 @@ the relevant rollout phase ships; before that, the sub-section reads
 
 ### 6.3 Adding a practice UI contract test
 
-TBD — see §3 Phase 3 for wrong-answer reveal-on-demand and phone-width usability. Do not add visual snapshots of marketing/cosmic leftovers.
+- **Reveal sequencing (Risk #7)**: `src/components/hooks/usePracticeRound.test.ts`. File starts with `// @vitest-environment jsdom`. `renderHook` + `act` from `@testing-library/react`. Derive a miss from the live `target` (`C4` → `D4`, else `C4`). Assert `revealed` / `uiPhase` / `index`: wrong tap stays on the note with `revealed === false`; `reveal()` sets `revealed`; `nextAfterWrong()` advances without requiring Reveal. `lastFeedback === "wrong"` is score feedback, not reveal. Do not mount `PracticeRound` / VexFlow. Do not screenshot a highlighted key. Do not treat key `aria-label` or `playPitch(target)` as reveal.
+- **Reveal wiring**: `src/components/practice/PracticeRound.reveal-source.test.ts`. Node `readFile` of `PracticeRound.tsx`. `highlightPitch` must be `round.revealed ? round.target : null`. `"Correct note:"` only in `state.revealed` ternaries. Do not parse JSX into a tree.
+- **Phone fit (Risk #5)**: `src/components/practice/PianoKeyboard.test.ts`. Node `readFile`. Require `w-full`, `aspect-[16/5]`, `min-w-0`, `flex-1`, `min-h-11`, black `width` as `%`. Forbid `100vw`, `min-w-[`, `w-[Npx]`. Do not treat `overflow-x-hidden` as fit. Do not use jsdom layout or snapshots of `Welcome.astro`. Manual smoke at ~390px is not a CI gate.
+- **Naming**: `<module>.test.ts`. Import `{ describe, expect, it }` from `"vitest"` (no globals).
+- **Run locally**: `npm test`.
+- **Reference tests**: `src/components/hooks/usePracticeRound.test.ts`, `src/components/practice/PracticeRound.reveal-source.test.ts`, `src/components/practice/PianoKeyboard.test.ts`.
 
 ### 6.4 Adding a test for a new API endpoint
 
@@ -158,6 +163,8 @@ TBD — see §3 Phase 3 for wrong-answer reveal-on-demand and phone-width usabil
 Phase 1 (critical-path coverage): Vitest is a standalone Node config with an explicit `@` alias. Do not “fix” lib tests by switching to `getViteConfig()` — that loads the Cloudflare Astro config and is a known crash surface. CI still does not run `npm test` until §3 Phase 4.
 
 Phase 2 (guest access and progress isolation): no `app.fetch` in Node Vitest. Guest `/` is `isProtectedPath` plus a home/shell source check. `POST /api/profile` is `APIContext` + recording client (RLS parked). Do not mock the profile service. CI still does not run `npm test` until §3 Phase 4.
+
+Phase 3 (practice UI contracts): default Vitest environment stays `"node"`. jsdom is a per-file pragma on `usePracticeRound.test.ts` only — do not flip the suite or use `getViteConfig()`. Layout is a piano fit-class source check plus manual ~390px smoke. CI still does not run `npm test` until §3 Phase 4.
 
 ## 7. What We Deliberately Don't Test
 

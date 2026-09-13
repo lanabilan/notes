@@ -278,25 +278,25 @@ New devDependencies only. No schema, API, or production behavior change. Existin
 
 #### Automated
 
-- [x] 2.1 `npm test` passes
-- [x] 2.2 `npm run lint` passes
-- [x] 2.3 Adding `min-w-[800px]` to a white-key `className` in `PianoKeyboard.tsx` makes `npm test` fail
-- [x] 2.4 No `*.snap` files added under `src/`
+- [x] 2.1 `npm test` passes — c92627b
+- [x] 2.2 `npm run lint` passes — c92627b
+- [x] 2.3 Adding `min-w-[800px]` to a white-key `className` in `PianoKeyboard.tsx` makes `npm test` fail — c92627b
+- [x] 2.4 No `*.snap` files added under `src/` — c92627b
 
 #### Manual
 
-- [x] 2.5 At ~390px width (browser or device), `/` practice piano does not cause page horizontal scroll and keys remain tappable
-- [x] 2.6 `Welcome.astro` was not used as a test oracle
+- [x] 2.5 At ~390px width (browser or device), `/` practice piano does not cause page horizontal scroll and keys remain tappable — c92627b
+- [x] 2.6 `Welcome.astro` was not used as a test oracle — c92627b
 
 ### Phase 3: Cookbook (§6.3 / §6.6)
 
 #### Automated
 
-- [ ] 3.1 `npm test` still passes
-- [ ] 3.2 `npm run lint` still passes (markdown is prettier-only if staged)
+- [x] 3.1 `npm test` still passes
+- [x] 3.2 `npm run lint` still passes (markdown is prettier-only if staged)
 
 #### Manual
 
-- [ ] 3.3 §6.3 no longer reads “TBD”
-- [ ] 3.4 A new contributor could add a reveal transition using only §6.3 and `usePracticeRound.test.ts`
-- [ ] 3.5 §2 risk Source cells are unchanged
+- [x] 3.3 §6.3 no longer reads “TBD”
+- [x] 3.4 A new contributor could add a reveal transition using only §6.3 and `usePracticeRound.test.ts`
+- [x] 3.5 §2 risk Source cells are unchanged
