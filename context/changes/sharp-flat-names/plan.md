@@ -139,15 +139,15 @@ None.
 
 #### Automated
 
-- [x] 1.1 `npm run lint` passes
-- [x] 1.2 `npm run build` passes
-- [x] 1.3 `formatPitchName` is exported from `@/lib/practice` and used in `promptFor` and piano `aria-label`
+- [x] 1.1 `npm run lint` passes — 954d936
+- [x] 1.2 `npm run build` passes — 954d936
+- [x] 1.3 `formatPitchName` is exported from `@/lib/practice` and used in `promptFor` and piano `aria-label` — 954d936
 
 #### Manual
 
-- [x] 1.4 White-key tap: single name in the prompt; score unchanged
-- [x] 1.5 Black-key tap: `C#4 / Db4` (sharp first, ASCII)
-- [x] 1.6 Reveal after a black-key miss: dual tap name plus single `Correct note:`
-- [x] 1.7 No visible key labels; black-key `aria-label` is the dual name
-- [x] 1.8 Staff stays naturals; black-key tap is still wrong vs a natural target
-- [x] 1.9 Playing, summary, playback, and highlight-on-reveal unchanged
+- [x] 1.4 White-key tap: single name in the prompt; score unchanged — 954d936
+- [x] 1.5 Black-key tap: `C#4 / Db4` (sharp first, ASCII) — 954d936
+- [x] 1.6 Reveal after a black-key miss: dual tap name plus single `Correct note:` — 954d936
+- [x] 1.7 No visible key labels; black-key `aria-label` is the dual name — 954d936
+- [x] 1.8 Staff stays naturals; black-key tap is still wrong vs a natural target — 954d936
+- [x] 1.9 Playing, summary, playback, and highlight-on-reveal unchanged — 954d936
