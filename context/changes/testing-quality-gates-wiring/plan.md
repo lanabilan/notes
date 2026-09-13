@@ -207,11 +207,11 @@ PRs and pushes to `main` will run the existing 8 test files. No new GitHub secre
 
 #### Automated
 
-- [x] 2.1 `npm test` still passes
-- [x] 2.2 `npm run lint` still passes (markdown/CLAUDE are prettier-only if staged)
+- [x] 2.1 `npm test` still passes — 2c6c3a9
+- [x] 2.2 `npm run lint` still passes (markdown/CLAUDE are prettier-only if staged) — 2c6c3a9
 
 #### Manual
 
-- [x] 2.3 §6.6 Phase 4 note is present; Phase 1–3 no longer say CI waits on Phase 4
-- [x] 2.4 `CLAUDE.md` CI section says `main` and `npm test`
-- [x] 2.5 §2 risk Source cells are unchanged
+- [x] 2.3 §6.6 Phase 4 note is present; Phase 1–3 no longer say CI waits on Phase 4 — 2c6c3a9
+- [x] 2.4 `CLAUDE.md` CI section says `main` and `npm test` — 2c6c3a9
+- [x] 2.5 §2 risk Source cells are unchanged — 2c6c3a9
