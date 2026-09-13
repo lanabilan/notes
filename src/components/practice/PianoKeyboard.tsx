@@ -18,8 +18,8 @@ export default function PianoKeyboard({
   className,
 }: PianoKeyboardProps) {
   return (
-    <div className={cn("w-full max-w-full overflow-hidden", className)}>
-      <div className="relative flex h-28 w-full touch-manipulation sm:h-32">
+    <div className={cn("mx-auto w-full max-w-3xl overflow-hidden", className)}>
+      <div className="relative flex aspect-[16/5] w-full touch-manipulation">
         {PIANO_WHITE_KEYS.map((pitch) => {
           const highlighted = highlightPitch === pitch;
           return (
